@@ -9,6 +9,7 @@ import {
     SignedOut,
     UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "@/_components/ui/sonner";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
                     className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                 >
                     {children}
+                    <Toaster position="top-right" />
                 </body>
             </html>
         </ClerkProvider>

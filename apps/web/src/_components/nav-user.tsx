@@ -24,17 +24,23 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/_components/ui/sidebar";
+import { useClerk, useUser } from "@clerk/nextjs";
+import { useState } from "react";
+import { Spinner } from "./ui/spinner";
 
-export function NavUser({
-    user,
-}: {
-    user: {
-        name: string;
-        email: string;
-        avatar: string;
-    };
-}) {
+export function NavUser() {
     const { isMobile } = useSidebar();
+    const { signOut } = useClerk();
+    const { user: clerkUser } = useUser();
+    const [isSigningOut, setIsSigningOut] = useState(false);
+
+    function handleSignOut() {
+        setIsSigningOut(true);
+        signOut({ redirectUrl: "/login" });
+        setTimeout(() => {
+            setIsSigningOut(false);
+        }, 2000);
+    }
 
     return (
         <SidebarMenu>
@@ -47,8 +53,8 @@ export function NavUser({
                         >
                             <Avatar className="h-8 w-8 rounded-lg grayscale">
                                 <AvatarImage
-                                    src={user.avatar}
-                                    alt={user.name}
+                                    src={clerkUser?.imageUrl}
+                                    alt={clerkUser?.firstName ?? "User"}
                                 />
                                 <AvatarFallback className="rounded-lg">
                                     CN
@@ -56,10 +62,13 @@ export function NavUser({
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
                                 <span className="truncate font-medium">
-                                    {user.name}
+                                    {clerkUser?.firstName ?? "User"}
                                 </span>
                                 <span className="text-muted-foreground truncate text-xs">
-                                    {user.email}
+                                    {
+                                        clerkUser?.primaryEmailAddress
+                                            ?.emailAddress
+                                    }
                                 </span>
                             </div>
                             <IconDotsVertical className="ml-auto size-4" />
@@ -71,7 +80,7 @@ export function NavUser({
                         align="end"
                         sideOffset={4}
                     >
-                        <DropdownMenuLabel className="p-0 font-normal">
+                        {/* <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage
@@ -91,8 +100,8 @@ export function NavUser({
                                     </span>
                                 </div>
                             </div>
-                        </DropdownMenuLabel>
-                        <DropdownMenuSeparator />
+                        </DropdownMenuLabel> */}
+                        {/* <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
                                 <IconUserCircle />
@@ -107,10 +116,14 @@ export function NavUser({
                                 Notifications
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <IconLogout />
-                            Log out
+                        <DropdownMenuSeparator /> */}
+                        <DropdownMenuItem
+                            onClick={() => handleSignOut()}
+                            onSelect={(e) => e.preventDefault()}
+                            disabled={isSigningOut}
+                        >
+                            {isSigningOut ? <Spinner /> : <IconLogout />}
+                            {isSigningOut ? "Logging" : "Log"} out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
