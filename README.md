@@ -8,7 +8,7 @@ This repository is organized as a monorepo using pnpm workspaces, allowing multi
 
 ### Apps
 
-- **web**: A Next.js web application
+-   **web**: A Next.js web application
 
 ### Packages
 
@@ -18,8 +18,8 @@ Shared packages and utilities can be added to the `packages/` directory.
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [pnpm](https://pnpm.io/) package manager
+-   [Node.js](https://nodejs.org/) (v18 or higher)
+-   [pnpm](https://pnpm.io/) package manager
 
 ### Installation
 
@@ -45,6 +45,6 @@ The web app will be available at `http://localhost:3000`.
 
 When working with this monorepo:
 
-- Use `pnpm --filter <workspace-name>` to run commands in specific workspaces
-- Use `pnpm` without filters to run commands across all workspaces
-- Always commit your `pnpm-lock.yaml` file to maintain dependency consistency
+-   Use `pnpm --filter <workspace-name>` to run commands in specific workspaces
+-   Use `pnpm` without filters to run commands across all workspaces
+-   Always commit your `pnpm-lock.yaml` file to maintain dependency consistency
