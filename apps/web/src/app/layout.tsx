@@ -10,13 +10,6 @@ import {
     UserButton,
 } from "@clerk/nextjs";
 import { Toaster } from "@/_components/ui/sonner";
-import {
-    useQuery,
-    useMutation,
-    useQueryClient,
-    QueryClientProvider,
-} from "@tanstack/react-query";
-import { queryClient } from "@/_lib/react-query/query-client";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
