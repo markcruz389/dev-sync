@@ -12,8 +12,9 @@ RUN npm install -g pnpm
 # Copy only lockfile + workspace manifest for caching
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 
-# Copy the whole monorepo (you could also selectively copy subfolders)
-COPY . .
+# Copy the monorepo packages and API app
+# COPY packages ./packages
+COPY apps/api ./apps/api
 
 # Set CI=true to allow pnpm to run non-interactively
 ENV CI=true
