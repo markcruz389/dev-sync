@@ -1,0 +1,35 @@
+# --------------------------
+# apps/api/Dockerfile.dev
+# --------------------------
+FROM node:25-alpine
+
+# Set working directory at repo root
+WORKDIR /app
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy only lockfile + workspace manifest for caching
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+
+# Copy the whole monorepo (you could also selectively copy subfolders)
+COPY . .
+
+# Set CI=true to allow pnpm to run non-interactively
+ENV CI=true
+
+# Install all deps (including workspace deps)
+RUN pnpm install --frozen-lockfile
+
+# Move into the API workspace
+WORKDIR /app/apps/api
+
+# Expose port
+EXPOSE 8888
+
+# Environment
+ENV NODE_ENV=development
+
+# Run dev server
+#CMD ["pnpm", "tsx", "watch", "src/index.ts"]
+CMD ["pnpm", "run", "dev"]

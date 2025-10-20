@@ -1,0 +1,30 @@
+services:
+    api:
+        build:
+            context: .
+            dockerfile: apps/api/Dockerfile.dev
+        working_dir: /app/apps/api
+        environment:
+            DATABASE_URL: ${DATABASE_URL}
+        volumes:
+            - .:/app
+            - /app/node_modules
+            - /app/apps/api/node_modules
+        ports:
+            - "${API_PORT:-8888}:8888"
+
+    db:
+        image: postgres:18-alpine
+        container_name: dev-sync-postgres
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DB}
+        volumes:
+            - db_data:/var/lib/postgresql/data
+        ports:
+            - "${POSTGRES_PORT:-5432}:5432"
+
+volumes:
+    db_data:
