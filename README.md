@@ -17,7 +17,8 @@ This repository is organized as a monorepo using pnpm workspaces, allowing multi
 
 ## Key Features
 
--   ✅ **Clerk Authentication**: SSO integration with GitHub OAuth
+-   ✅ **Clerk Authentication**: Complete SSO integration with GitHub OAuth for seamless user authentication
+-   ✅ **OAuth Integration**: GitHub OAuth provider configured for secure social login
 -   ✅ **Prisma ORM**: PostgreSQL database with migrations and type-safe queries
 -   ✅ **API Integration**: Hono backend with webhook support for Clerk events
 -   ✅ **React Query**: Data fetching and caching library for the frontend
@@ -98,7 +99,8 @@ pnpm --filter db db:studio
 
 ### Frontend (Next.js)
 
--   Clerk authentication with GitHub OAuth
+-   Clerk authentication with GitHub OAuth provider
+-   Secure user session management
 -   React Query for server state management
 -   Tailwind CSS for styling
 -   Type-safe API integration with Axios
