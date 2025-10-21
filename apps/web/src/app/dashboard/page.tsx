@@ -1,12 +1,21 @@
+"use client";
+
 import { AppSidebar } from "@/_components/app-sidebar";
 import { ChartAreaInteractive } from "@/_components/chart-area-interactive";
 import { DataTable } from "@/_components/data-table";
 import { SectionCards } from "@/_components/section-cards";
 import { SiteHeader } from "@/_components/site-header";
+import { Button } from "@/_components/ui/button";
 import { SidebarInset, SidebarProvider } from "@/_components/ui/sidebar";
 import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
+    async function handleLinkGithub() {
+        const res = await fetch("/api/github/start");
+        const { redirectUrl } = await res.json();
+        window.location.href = redirectUrl;
+    }
+
     return (
         <SidebarProvider
             style={
@@ -27,6 +36,9 @@ export default function Page() {
                                 <ChartAreaInteractive />
                             </div>
                             <DataTable data={data} /> */}
+                            <Button onClick={() => handleLinkGithub()}>
+                                Link Github Account
+                            </Button>
                         </div>
                     </div>
                 </div>

@@ -130,6 +130,15 @@ exports.Prisma.UserScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.UsersOauthScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  provider: 'provider',
+  access_token: 'access_token',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -144,10 +153,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.OauthProvider = exports.$Enums.OauthProvider = {
+  GITHUB: 'GITHUB',
+  GOOGLE: 'GOOGLE',
+  FACEBOOK: 'FACEBOOK'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  UsersOauth: 'UsersOauth'
 };
 
 /**

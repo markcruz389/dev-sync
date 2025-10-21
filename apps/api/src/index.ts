@@ -1,12 +1,15 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+
 import users from "./features/users.js";
 import webhooks from "./features/webhooks.js";
+import auth from "./features/auth.js";
 
 import "dotenv/config";
 
 const app = new Hono();
 
+app.route("/api/auth", auth);
 app.route("/api/users", users);
 app.route("/api/webhooks", webhooks);
 

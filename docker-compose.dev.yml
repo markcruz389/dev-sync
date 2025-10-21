@@ -7,6 +7,10 @@ services:
         environment:
             DATABASE_URL: ${DATABASE_URL}
             CLERK_WEBHOOK_SIGNING_SECRET: ${CLERK_WEBHOOK_SIGNING_SECRET}
+            GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+            GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+            GITHUB_STATE_SECRET: ${GITHUB_STATE_SECRET}
+            WEB_APP_BASE_URL: ${WEB_APP_BASE_URL}
         volumes:
             - .:/app
             - /app/node_modules
