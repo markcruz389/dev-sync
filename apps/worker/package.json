@@ -1,0 +1,25 @@
+{
+    "name": "worker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "tsx watch src/index.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@devsync/db": "workspace:*",
+        "@devsync/queue": "workspace:*",
+        "bullmq": "^5.61.2",
+        "ioredis": "^5.8.2"
+    },
+    "devDependencies": {
+        "@types/node": "^24.9.1",
+        "tsx": "^4.20.6",
+        "typescript": "^5.9.3"
+    }
+}

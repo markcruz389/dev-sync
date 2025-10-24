@@ -48,8 +48,6 @@ app.get("/github/callback", async (c) => {
 
     const userId = (decoded as jwt.JwtPayload & { userId: string }).userId;
 
-    console.log("Decoded state:", decoded);
-
     // Exchange code for token
     const tokenRes = await fetch(
         "https://github.com/login/oauth/access_token",
@@ -65,7 +63,6 @@ app.get("/github/callback", async (c) => {
     );
 
     const tokenData = await tokenRes.json();
-    console.log("Token data:", tokenData);
     const accessToken = tokenData.access_token;
 
     const user = await prisma.user.findUniqueOrThrow({

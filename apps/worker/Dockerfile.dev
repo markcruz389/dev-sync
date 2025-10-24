@@ -1,0 +1,32 @@
+# --------------------------
+# apps/worker/Dockerfile.dev
+# --------------------------
+FROM node:25-alpine
+
+# Set working directory at repo root
+WORKDIR /app
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy only lockfile + workspace manifest for caching
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+
+# Copy the worker app (and any shared packages if needed)
+COPY apps/worker ./apps/worker
+# COPY packages ./packages  # uncomment if your worker imports from shared packages
+
+# Set CI=true to allow pnpm to run non-interactively
+ENV CI=true
+
+# Install all deps (including workspace deps)
+RUN pnpm install --frozen-lockfile
+
+# Move into the worker workspace
+WORKDIR /app/apps/worker
+
+# Environment
+ENV NODE_ENV=development
+
+# Default command — run with tsx in watch mode for live dev
+CMD ["pnpm", "run", "dev"]
