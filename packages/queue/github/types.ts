@@ -1,11 +1,11 @@
 export enum GithubJobName {
-    UserReposGetJob = "userReposGet",
+    UserGithubLinked = "userGithubLinked",
 }
 
-export type UserReposGetJob = {
+export type UserGithubLinkedJob = {
     userId: number;
 };
 
 export type GithubJobPayloads = {
-    [GithubJobName.UserReposGetJob]: UserReposGetJob;
+    [GithubJobName.UserGithubLinked]: UserGithubLinkedJob;
 };

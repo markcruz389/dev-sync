@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { prisma, GithubAuthRepoSelection } from "@devsync/db";
 import { pushGithubJob, GithubJobName } from "@devsync/queue";
+import { getTokenExpiryDate } from "@devsync/utils";
 import {
     exchangeGithubCode,
-    getExpiryDate,
     getInstallationAuth,
     getUserIdFromState,
 } from "./services.js";
@@ -11,8 +11,27 @@ import {
 const app = new Hono();
 
 // Redirect user to install your GitHub App
-app.get("/github/install", (c) => {
-    const state = c.req.query("state") ?? "";
+app.get("/github/install", async (c) => {
+    const state = c.req.query("state");
+    if (!state) {
+        return c.json({ error: "state parameter is required" }, 400);
+    }
+    const userId = getUserIdFromState(state);
+    if (!userId) {
+        return c.json({ error: "Invalid state parameter" }, 400);
+    }
+
+    const user = await prisma.user.findUniqueOrThrow({
+        where: { auth_id: userId },
+        select: {
+            githubAuth: { select: { id: true } },
+        },
+    });
+    if (user.githubAuth) {
+        return c.redirect(
+            `${process.env.WEB_APP_BASE_URL}/dashboard?linked=github&already=true`
+        );
+    }
 
     const redirectUrl = new URL(
         `https://github.com/apps/${process.env.GITHUB_APP_SLUG}/installations/new`
@@ -38,9 +57,8 @@ app.get("/github/install/callback", async (c) => {
     if (!state) {
         return c.json({ error: "state parameter is required" }, 400);
     }
-
-    const user_id = getUserIdFromState(state);
-    if (!user_id) {
+    const userId = getUserIdFromState(state);
+    if (!userId) {
         return c.json({ error: "Invalid state parameter" }, 400);
     }
 
@@ -58,7 +76,7 @@ app.get("/github/install/callback", async (c) => {
     ]);
 
     const user = await prisma.user.findUniqueOrThrow({
-        where: { auth_id: user_id },
+        where: { auth_id: userId },
         select: { id: true },
     });
 
@@ -68,15 +86,15 @@ app.get("/github/install/callback", async (c) => {
             access_token: userAuth.accessToken,
             refresh_token: userAuth.refreshToken,
             token_type: userAuth.type,
-            expires_at: getExpiryDate({ expiresIn: userAuth.expiresIn }),
-            refresh_expires_at: getExpiryDate({
+            expires_at: getTokenExpiryDate({ expiresIn: userAuth.expiresIn }),
+            refresh_expires_at: getTokenExpiryDate({
                 expiresIn: userAuth.refreshTokenExpiresIn,
             }),
             scope: userAuth.scope,
 
             installation_id: installationId,
             installation_token: installationAuth.token,
-            installation_expires_at: getExpiryDate({
+            installation_expires_at: getTokenExpiryDate({
                 expiresAt: installationAuth.expires_at,
             }),
             permissions: installationAuth.permissions,
@@ -86,9 +104,9 @@ app.get("/github/install/callback", async (c) => {
     });
 
     // Enqueue job to fetch user repos
-    // await pushGithubJob(GithubJobName.UserReposGetJob, {
-    //     userId: user.id,
-    // });
+    await pushGithubJob(GithubJobName.UserGithubLinked, {
+        userId: user.id,
+    });
 
     return c.redirect(
         `${process.env.WEB_APP_BASE_URL}/dashboard?linked=github`

@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  prisma:
+    prisma:
+      specifier: latest
+      version: 6.18.0
+
 importers:
 
   .: {}
@@ -19,6 +25,9 @@ importers:
       '@devsync/queue':
         specifier: workspace:*
         version: link:../../packages/queue
+      '@devsync/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@hono/node-server':
         specifier: ^1.19.5
         version: 1.19.5(hono@4.10.1)
@@ -198,6 +207,9 @@ importers:
       '@devsync/queue':
         specifier: workspace:*
         version: link:../../packages/queue
+      '@devsync/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@octokit/rest':
         specifier: ^22.0.0
         version: 22.0.0
@@ -245,6 +257,12 @@ importers:
       ioredis:
         specifier: ^5.8.2
         version: 5.8.2
+    devDependencies:
+      '@types/node':
+        specifier: ^24.9.1
+        version: 24.9.1
+
+  packages/utils:
     devDependencies:
       '@types/node':
         specifier: ^24.9.1

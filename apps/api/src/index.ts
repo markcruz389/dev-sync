@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 
-import users from "./users/route.js";
 import webhooks from "./webhooks/routes.js";
 import auth from "./auth/routes.js";
 
@@ -10,7 +9,6 @@ import "dotenv/config";
 const app = new Hono();
 
 app.route("/api/auth", auth);
-app.route("/api/users", users);
 app.route("/api/webhooks", webhooks);
 
 const server = serve(

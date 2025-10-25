@@ -10,6 +10,7 @@
         "@clerk/backend": "^2.18.3",
         "@devsync/db": "workspace:*",
         "@devsync/queue": "workspace:*",
+        "@devsync/utils": "workspace:*",
         "@hono/node-server": "^1.19.5",
         "@hono/zod-validator": "^0.7.4",
         "bullmq": "^5.61.2",

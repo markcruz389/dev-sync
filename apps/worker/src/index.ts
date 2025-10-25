@@ -1,11 +1,11 @@
 import { createGithubWorker, GithubJobName } from "@devsync/queue";
-import { userReposGet } from "./github/user-repos-fetch.js";
+import { userGithubLinked } from "./jobs/github/user-github-linked.js";
 import { logger } from "./_utils/logger.js";
 
 // Initialize the GitHub worker with job handlers
 try {
     createGithubWorker({
-        [GithubJobName.UserReposGetJob]: userReposGet,
+        [GithubJobName.UserGithubLinked]: userGithubLinked,
     });
     logger.info("✅ Worker started and listening for GitHub jobs...");
 } catch {

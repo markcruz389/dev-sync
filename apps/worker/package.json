@@ -14,6 +14,7 @@
     "dependencies": {
         "@devsync/db": "workspace:*",
         "@devsync/queue": "workspace:*",
+        "@devsync/utils": "workspace:*",
         "@octokit/rest": "^22.0.0",
         "bullmq": "^5.61.2",
         "ioredis": "^5.8.2"

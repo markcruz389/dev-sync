@@ -20,8 +20,6 @@ export async function exchangeGithubCode(code: string) {
         throw new Error(`Failed to exchange code: ${res.status} ${text}`);
     }
 
-    console.log("GitHub token exchange response status:", res.status);
-
     const data = await res.json();
 
     return {
@@ -77,17 +75,6 @@ export async function getInstallationAuth(installationId: string): Promise<{
     if (!res.ok) throw new Error(`Failed to fetch token: ${res.statusText}`);
     const data = await res.json();
     return data;
-}
-
-export function getExpiryDate(token: {
-    expiresAt?: string | Date;
-    expiresIn?: number;
-}): Date {
-    if (token.expiresAt) {
-        return new Date(token.expiresAt);
-    }
-
-    return new Date(Date.now() + token.expiresIn! * 1000);
 }
 
 export function getUserIdFromState(state: string): string | null {
