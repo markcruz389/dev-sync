@@ -14,7 +14,7 @@ export async function GET() {
     });
 
     const redirectUrl = new URL(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/github`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/github/install`
     );
     redirectUrl.searchParams.set("state", state);
 

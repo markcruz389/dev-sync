@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -130,11 +130,23 @@ exports.Prisma.UserScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.UsersOauthScalarFieldEnum = {
+exports.Prisma.GithubAuthScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  provider: 'provider',
+  github_user_id: 'github_user_id',
+  github_username: 'github_username',
+  github_avatar_url: 'github_avatar_url',
   access_token: 'access_token',
+  refresh_token: 'refresh_token',
+  token_type: 'token_type',
+  expires_at: 'expires_at',
+  refresh_expires_at: 'refresh_expires_at',
+  scope: 'scope',
+  installation_id: 'installation_id',
+  installation_token: 'installation_token',
+  installation_expires_at: 'installation_expires_at',
+  permissions: 'permissions',
+  repository_selection: 'repository_selection',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -142,6 +154,10 @@ exports.Prisma.UsersOauthScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -153,15 +169,20 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.OauthProvider = exports.$Enums.OauthProvider = {
-  GITHUB: 'GITHUB',
-  GOOGLE: 'GOOGLE',
-  FACEBOOK: 'FACEBOOK'
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.GithubAuthRepoSelection = exports.$Enums.GithubAuthRepoSelection = {
+  ALL: 'ALL',
+  SELECTED: 'SELECTED'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
-  UsersOauth: 'UsersOauth'
+  GithubAuth: 'GithubAuth'
 };
 
 /**

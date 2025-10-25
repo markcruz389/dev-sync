@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -102,11 +102,23 @@ exports.Prisma.UserScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.UsersOauthScalarFieldEnum = {
+exports.Prisma.GithubAuthScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  provider: 'provider',
+  github_user_id: 'github_user_id',
+  github_username: 'github_username',
+  github_avatar_url: 'github_avatar_url',
   access_token: 'access_token',
+  refresh_token: 'refresh_token',
+  token_type: 'token_type',
+  expires_at: 'expires_at',
+  refresh_expires_at: 'refresh_expires_at',
+  scope: 'scope',
+  installation_id: 'installation_id',
+  installation_token: 'installation_token',
+  installation_expires_at: 'installation_expires_at',
+  permissions: 'permissions',
+  repository_selection: 'repository_selection',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -114,6 +126,10 @@ exports.Prisma.UsersOauthScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -125,15 +141,20 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.OauthProvider = exports.$Enums.OauthProvider = {
-  GITHUB: 'GITHUB',
-  GOOGLE: 'GOOGLE',
-  FACEBOOK: 'FACEBOOK'
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.GithubAuthRepoSelection = exports.$Enums.GithubAuthRepoSelection = {
+  ALL: 'ALL',
+  SELECTED: 'SELECTED'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
-  UsersOauth: 'UsersOauth'
+  GithubAuth: 'GithubAuth'
 };
 /**
  * Create the Client
@@ -171,8 +192,8 @@ const config = {
     "rootEnvPath": null
   },
   "relativePath": "../../prisma",
-  "clientVersion": "6.17.1",
-  "engineVersion": "272a37d34178c2894197e17273bf937f25acdeac",
+  "clientVersion": "6.18.0",
+  "engineVersion": "34b5a692b7bd79939a9a2c3ef97d816e749cda2f",
   "datasourceNames": [
     "db"
   ],
@@ -185,13 +206,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"linux-musl-arm64-openssl-3.0.x\"]\n  output        = \"../generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum OauthProvider {\n  GITHUB\n  GOOGLE\n  FACEBOOK\n\n  @@map(\"oauth_provider\")\n}\n\nmodel User {\n  id         Int      @id @default(autoincrement())\n  auth_id    String   @unique\n  email      String   @unique\n  first_name String?\n  last_name  String?\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  oauth_accounts UsersOauth[]\n\n  @@map(\"users\")\n}\n\nmodel UsersOauth {\n  id           Int           @id @default(autoincrement())\n  user_id      Int\n  provider     OauthProvider\n  access_token String\n  created_at   DateTime      @default(now())\n  updated_at   DateTime      @updatedAt\n\n  user User @relation(fields: [user_id], references: [id])\n\n  @@unique([user_id, provider])\n  @@map(\"users_oauth\")\n}\n",
-  "inlineSchemaHash": "697cd7f8dda62cadfe385a1ad612cac4d31db549ee899e7d48c045c98439b309",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"linux-musl-arm64-openssl-3.0.x\"]\n  output        = \"../generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id         Int     @id @default(autoincrement())\n  auth_id    String  @unique\n  email      String  @unique\n  first_name String?\n  last_name  String?\n\n  githubAuth GithubAuth? @relation\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  @@map(\"users\")\n}\n\nenum GithubAuthRepoSelection {\n  ALL\n  SELECTED\n\n  @@map(\"github_auth_repo_selection\")\n}\n\nmodel GithubAuth {\n  id Int @id @default(autoincrement())\n\n  // --- Relation to your app user ---\n  user_id Int  @unique\n  user    User @relation(fields: [user_id], references: [id])\n\n  // --- User OAuth ---\n  github_user_id     Int? // --\n  github_username    String? // --\n  github_avatar_url  String? // These are optional since based on the auth flow used this can only be added when github's /user endpoint is hit and that's done in the background process.\n  access_token       String\n  refresh_token      String\n  token_type         String // usually \"bearer\"\n  expires_at         DateTime @db.Timestamptz(3)\n  refresh_expires_at DateTime @db.Timestamptz(3)\n  scope              String // usually empty string\n\n  // --- App Installation ---\n  installation_id         String\n  installation_token      String\n  installation_expires_at DateTime\n  permissions             Json\n  repository_selection    GithubAuthRepoSelection\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  @@map(\"github_auth\")\n}\n",
+  "inlineSchemaHash": "4a687624925ac4da7707be2e67a345b309a018f6e2f6e8170f9103c3f8aa7178",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"auth_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"oauth_accounts\",\"kind\":\"object\",\"type\":\"UsersOauth\",\"relationName\":\"UserToUsersOauth\"}],\"dbName\":\"users\"},\"UsersOauth\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"provider\",\"kind\":\"enum\",\"type\":\"OauthProvider\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToUsersOauth\"}],\"dbName\":\"users_oauth\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"auth_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"githubAuth\",\"kind\":\"object\",\"type\":\"GithubAuth\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"users\"},\"GithubAuth\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"github_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"github_username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"github_avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refresh_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"permissions\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"repository_selection\",\"kind\":\"enum\",\"type\":\"GithubAuthRepoSelection\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"github_auth\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

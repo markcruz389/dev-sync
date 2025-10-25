@@ -19,28 +19,27 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model UsersOauth
+ * Model GithubAuth
  * 
  */
-export type UsersOauth = $Result.DefaultSelection<Prisma.$UsersOauthPayload>
+export type GithubAuth = $Result.DefaultSelection<Prisma.$GithubAuthPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
-  export const OauthProvider: {
-  GITHUB: 'GITHUB',
-  GOOGLE: 'GOOGLE',
-  FACEBOOK: 'FACEBOOK'
+  export const GithubAuthRepoSelection: {
+  ALL: 'ALL',
+  SELECTED: 'SELECTED'
 };
 
-export type OauthProvider = (typeof OauthProvider)[keyof typeof OauthProvider]
+export type GithubAuthRepoSelection = (typeof GithubAuthRepoSelection)[keyof typeof GithubAuthRepoSelection]
 
 }
 
-export type OauthProvider = $Enums.OauthProvider
+export type GithubAuthRepoSelection = $Enums.GithubAuthRepoSelection
 
-export const OauthProvider: typeof $Enums.OauthProvider
+export const GithubAuthRepoSelection: typeof $Enums.GithubAuthRepoSelection
 
 /**
  * ##  Prisma Client ʲˢ
@@ -171,14 +170,14 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.usersOauth`: Exposes CRUD operations for the **UsersOauth** model.
+   * `prisma.githubAuth`: Exposes CRUD operations for the **GithubAuth** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more UsersOauths
-    * const usersOauths = await prisma.usersOauth.findMany()
+    * // Fetch zero or more GithubAuths
+    * const githubAuths = await prisma.githubAuth.findMany()
     * ```
     */
-  get usersOauth(): Prisma.UsersOauthDelegate<ExtArgs, ClientOptions>;
+  get githubAuth(): Prisma.GithubAuthDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -237,8 +236,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -251,6 +250,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -620,7 +620,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    UsersOauth: 'UsersOauth'
+    GithubAuth: 'GithubAuth'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -639,7 +639,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usersOauth"
+      modelProps: "user" | "githubAuth"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -717,77 +717,77 @@ export namespace Prisma {
           }
         }
       }
-      UsersOauth: {
-        payload: Prisma.$UsersOauthPayload<ExtArgs>
-        fields: Prisma.UsersOauthFieldRefs
+      GithubAuth: {
+        payload: Prisma.$GithubAuthPayload<ExtArgs>
+        fields: Prisma.GithubAuthFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.UsersOauthFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload> | null
+            args: Prisma.GithubAuthFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.UsersOauthFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           findFirst: {
-            args: Prisma.UsersOauthFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload> | null
+            args: Prisma.GithubAuthFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.UsersOauthFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           findMany: {
-            args: Prisma.UsersOauthFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>[]
+            args: Prisma.GithubAuthFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>[]
           }
           create: {
-            args: Prisma.UsersOauthCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           createMany: {
-            args: Prisma.UsersOauthCreateManyArgs<ExtArgs>
+            args: Prisma.GithubAuthCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.UsersOauthCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>[]
+            args: Prisma.GithubAuthCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>[]
           }
           delete: {
-            args: Prisma.UsersOauthDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           update: {
-            args: Prisma.UsersOauthUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           deleteMany: {
-            args: Prisma.UsersOauthDeleteManyArgs<ExtArgs>
+            args: Prisma.GithubAuthDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.UsersOauthUpdateManyArgs<ExtArgs>
+            args: Prisma.GithubAuthUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.UsersOauthUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>[]
+            args: Prisma.GithubAuthUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>[]
           }
           upsert: {
-            args: Prisma.UsersOauthUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsersOauthPayload>
+            args: Prisma.GithubAuthUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubAuthPayload>
           }
           aggregate: {
-            args: Prisma.UsersOauthAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUsersOauth>
+            args: Prisma.GithubAuthAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGithubAuth>
           }
           groupBy: {
-            args: Prisma.UsersOauthGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UsersOauthGroupByOutputType>[]
+            args: Prisma.GithubAuthGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GithubAuthGroupByOutputType>[]
           }
           count: {
-            args: Prisma.UsersOauthCountArgs<ExtArgs>
-            result: $Utils.Optional<UsersOauthCountAggregateOutputType> | number
+            args: Prisma.GithubAuthCountArgs<ExtArgs>
+            result: $Utils.Optional<GithubAuthCountAggregateOutputType> | number
           }
         }
       }
@@ -888,7 +888,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    usersOauth?: UsersOauthOmit
+    githubAuth?: GithubAuthOmit
   }
 
   /* Types for Logging */
@@ -963,36 +963,6 @@ export namespace Prisma {
    * Count Types
    */
 
-
-  /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    oauth_accounts: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    oauth_accounts?: boolean | UserCountOutputTypeCountOauth_accountsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountOauth_accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UsersOauthWhereInput
-  }
 
 
   /**
@@ -1213,8 +1183,7 @@ export namespace Prisma {
     last_name?: boolean
     created_at?: boolean
     updated_at?: boolean
-    oauth_accounts?: boolean | User$oauth_accountsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+    githubAuth?: boolean | User$githubAuthArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1249,8 +1218,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "auth_id" | "email" | "first_name" | "last_name" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    oauth_accounts?: boolean | User$oauth_accountsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+    githubAuth?: boolean | User$githubAuthArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1258,7 +1226,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      oauth_accounts: Prisma.$UsersOauthPayload<ExtArgs>[]
+      githubAuth: Prisma.$GithubAuthPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1662,7 +1630,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    oauth_accounts<T extends User$oauth_accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$oauth_accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    githubAuth<T extends User$githubAuthArgs<ExtArgs> = {}>(args?: Subset<T, User$githubAuthArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2087,27 +2055,22 @@ export namespace Prisma {
   }
 
   /**
-   * User.oauth_accounts
+   * User.githubAuth
    */
-  export type User$oauth_accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$githubAuthArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
-    where?: UsersOauthWhereInput
-    orderBy?: UsersOauthOrderByWithRelationInput | UsersOauthOrderByWithRelationInput[]
-    cursor?: UsersOauthWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UsersOauthScalarFieldEnum | UsersOauthScalarFieldEnum[]
+    include?: GithubAuthInclude<ExtArgs> | null
+    where?: GithubAuthWhereInput
   }
 
   /**
@@ -2130,400 +2093,544 @@ export namespace Prisma {
 
 
   /**
-   * Model UsersOauth
+   * Model GithubAuth
    */
 
-  export type AggregateUsersOauth = {
-    _count: UsersOauthCountAggregateOutputType | null
-    _avg: UsersOauthAvgAggregateOutputType | null
-    _sum: UsersOauthSumAggregateOutputType | null
-    _min: UsersOauthMinAggregateOutputType | null
-    _max: UsersOauthMaxAggregateOutputType | null
+  export type AggregateGithubAuth = {
+    _count: GithubAuthCountAggregateOutputType | null
+    _avg: GithubAuthAvgAggregateOutputType | null
+    _sum: GithubAuthSumAggregateOutputType | null
+    _min: GithubAuthMinAggregateOutputType | null
+    _max: GithubAuthMaxAggregateOutputType | null
   }
 
-  export type UsersOauthAvgAggregateOutputType = {
+  export type GithubAuthAvgAggregateOutputType = {
     id: number | null
     user_id: number | null
+    github_user_id: number | null
   }
 
-  export type UsersOauthSumAggregateOutputType = {
+  export type GithubAuthSumAggregateOutputType = {
     id: number | null
     user_id: number | null
+    github_user_id: number | null
   }
 
-  export type UsersOauthMinAggregateOutputType = {
+  export type GithubAuthMinAggregateOutputType = {
     id: number | null
     user_id: number | null
-    provider: $Enums.OauthProvider | null
+    github_user_id: number | null
+    github_username: string | null
+    github_avatar_url: string | null
     access_token: string | null
+    refresh_token: string | null
+    token_type: string | null
+    expires_at: Date | null
+    refresh_expires_at: Date | null
+    scope: string | null
+    installation_id: string | null
+    installation_token: string | null
+    installation_expires_at: Date | null
+    repository_selection: $Enums.GithubAuthRepoSelection | null
     created_at: Date | null
     updated_at: Date | null
   }
 
-  export type UsersOauthMaxAggregateOutputType = {
+  export type GithubAuthMaxAggregateOutputType = {
     id: number | null
     user_id: number | null
-    provider: $Enums.OauthProvider | null
+    github_user_id: number | null
+    github_username: string | null
+    github_avatar_url: string | null
     access_token: string | null
+    refresh_token: string | null
+    token_type: string | null
+    expires_at: Date | null
+    refresh_expires_at: Date | null
+    scope: string | null
+    installation_id: string | null
+    installation_token: string | null
+    installation_expires_at: Date | null
+    repository_selection: $Enums.GithubAuthRepoSelection | null
     created_at: Date | null
     updated_at: Date | null
   }
 
-  export type UsersOauthCountAggregateOutputType = {
+  export type GithubAuthCountAggregateOutputType = {
     id: number
     user_id: number
-    provider: number
+    github_user_id: number
+    github_username: number
+    github_avatar_url: number
     access_token: number
+    refresh_token: number
+    token_type: number
+    expires_at: number
+    refresh_expires_at: number
+    scope: number
+    installation_id: number
+    installation_token: number
+    installation_expires_at: number
+    permissions: number
+    repository_selection: number
     created_at: number
     updated_at: number
     _all: number
   }
 
 
-  export type UsersOauthAvgAggregateInputType = {
+  export type GithubAuthAvgAggregateInputType = {
     id?: true
     user_id?: true
+    github_user_id?: true
   }
 
-  export type UsersOauthSumAggregateInputType = {
+  export type GithubAuthSumAggregateInputType = {
     id?: true
     user_id?: true
+    github_user_id?: true
   }
 
-  export type UsersOauthMinAggregateInputType = {
+  export type GithubAuthMinAggregateInputType = {
     id?: true
     user_id?: true
-    provider?: true
+    github_user_id?: true
+    github_username?: true
+    github_avatar_url?: true
     access_token?: true
+    refresh_token?: true
+    token_type?: true
+    expires_at?: true
+    refresh_expires_at?: true
+    scope?: true
+    installation_id?: true
+    installation_token?: true
+    installation_expires_at?: true
+    repository_selection?: true
     created_at?: true
     updated_at?: true
   }
 
-  export type UsersOauthMaxAggregateInputType = {
+  export type GithubAuthMaxAggregateInputType = {
     id?: true
     user_id?: true
-    provider?: true
+    github_user_id?: true
+    github_username?: true
+    github_avatar_url?: true
     access_token?: true
+    refresh_token?: true
+    token_type?: true
+    expires_at?: true
+    refresh_expires_at?: true
+    scope?: true
+    installation_id?: true
+    installation_token?: true
+    installation_expires_at?: true
+    repository_selection?: true
     created_at?: true
     updated_at?: true
   }
 
-  export type UsersOauthCountAggregateInputType = {
+  export type GithubAuthCountAggregateInputType = {
     id?: true
     user_id?: true
-    provider?: true
+    github_user_id?: true
+    github_username?: true
+    github_avatar_url?: true
     access_token?: true
+    refresh_token?: true
+    token_type?: true
+    expires_at?: true
+    refresh_expires_at?: true
+    scope?: true
+    installation_id?: true
+    installation_token?: true
+    installation_expires_at?: true
+    permissions?: true
+    repository_selection?: true
     created_at?: true
     updated_at?: true
     _all?: true
   }
 
-  export type UsersOauthAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which UsersOauth to aggregate.
+     * Filter which GithubAuth to aggregate.
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of UsersOauths to fetch.
+     * Determine the order of GithubAuths to fetch.
      */
-    orderBy?: UsersOauthOrderByWithRelationInput | UsersOauthOrderByWithRelationInput[]
+    orderBy?: GithubAuthOrderByWithRelationInput | GithubAuthOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: UsersOauthWhereUniqueInput
+    cursor?: GithubAuthWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` UsersOauths from the position of the cursor.
+     * Take `±n` GithubAuths from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` UsersOauths.
+     * Skip the first `n` GithubAuths.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned UsersOauths
+     * Count returned GithubAuths
     **/
-    _count?: true | UsersOauthCountAggregateInputType
+    _count?: true | GithubAuthCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: UsersOauthAvgAggregateInputType
+    _avg?: GithubAuthAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: UsersOauthSumAggregateInputType
+    _sum?: GithubAuthSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: UsersOauthMinAggregateInputType
+    _min?: GithubAuthMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: UsersOauthMaxAggregateInputType
+    _max?: GithubAuthMaxAggregateInputType
   }
 
-  export type GetUsersOauthAggregateType<T extends UsersOauthAggregateArgs> = {
-        [P in keyof T & keyof AggregateUsersOauth]: P extends '_count' | 'count'
+  export type GetGithubAuthAggregateType<T extends GithubAuthAggregateArgs> = {
+        [P in keyof T & keyof AggregateGithubAuth]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateUsersOauth[P]>
-      : GetScalarType<T[P], AggregateUsersOauth[P]>
+        : GetScalarType<T[P], AggregateGithubAuth[P]>
+      : GetScalarType<T[P], AggregateGithubAuth[P]>
   }
 
 
 
 
-  export type UsersOauthGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UsersOauthWhereInput
-    orderBy?: UsersOauthOrderByWithAggregationInput | UsersOauthOrderByWithAggregationInput[]
-    by: UsersOauthScalarFieldEnum[] | UsersOauthScalarFieldEnum
-    having?: UsersOauthScalarWhereWithAggregatesInput
+  export type GithubAuthGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GithubAuthWhereInput
+    orderBy?: GithubAuthOrderByWithAggregationInput | GithubAuthOrderByWithAggregationInput[]
+    by: GithubAuthScalarFieldEnum[] | GithubAuthScalarFieldEnum
+    having?: GithubAuthScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: UsersOauthCountAggregateInputType | true
-    _avg?: UsersOauthAvgAggregateInputType
-    _sum?: UsersOauthSumAggregateInputType
-    _min?: UsersOauthMinAggregateInputType
-    _max?: UsersOauthMaxAggregateInputType
+    _count?: GithubAuthCountAggregateInputType | true
+    _avg?: GithubAuthAvgAggregateInputType
+    _sum?: GithubAuthSumAggregateInputType
+    _min?: GithubAuthMinAggregateInputType
+    _max?: GithubAuthMaxAggregateInputType
   }
 
-  export type UsersOauthGroupByOutputType = {
+  export type GithubAuthGroupByOutputType = {
     id: number
     user_id: number
-    provider: $Enums.OauthProvider
+    github_user_id: number | null
+    github_username: string | null
+    github_avatar_url: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date
+    refresh_expires_at: Date
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date
+    permissions: JsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at: Date
     updated_at: Date
-    _count: UsersOauthCountAggregateOutputType | null
-    _avg: UsersOauthAvgAggregateOutputType | null
-    _sum: UsersOauthSumAggregateOutputType | null
-    _min: UsersOauthMinAggregateOutputType | null
-    _max: UsersOauthMaxAggregateOutputType | null
+    _count: GithubAuthCountAggregateOutputType | null
+    _avg: GithubAuthAvgAggregateOutputType | null
+    _sum: GithubAuthSumAggregateOutputType | null
+    _min: GithubAuthMinAggregateOutputType | null
+    _max: GithubAuthMaxAggregateOutputType | null
   }
 
-  type GetUsersOauthGroupByPayload<T extends UsersOauthGroupByArgs> = Prisma.PrismaPromise<
+  type GetGithubAuthGroupByPayload<T extends GithubAuthGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<UsersOauthGroupByOutputType, T['by']> &
+      PickEnumerable<GithubAuthGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof UsersOauthGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof GithubAuthGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], UsersOauthGroupByOutputType[P]>
-            : GetScalarType<T[P], UsersOauthGroupByOutputType[P]>
+              : GetScalarType<T[P], GithubAuthGroupByOutputType[P]>
+            : GetScalarType<T[P], GithubAuthGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type UsersOauthSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GithubAuthSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    provider?: boolean
+    github_user_id?: boolean
+    github_username?: boolean
+    github_avatar_url?: boolean
     access_token?: boolean
+    refresh_token?: boolean
+    token_type?: boolean
+    expires_at?: boolean
+    refresh_expires_at?: boolean
+    scope?: boolean
+    installation_id?: boolean
+    installation_token?: boolean
+    installation_expires_at?: boolean
+    permissions?: boolean
+    repository_selection?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["usersOauth"]>
+  }, ExtArgs["result"]["githubAuth"]>
 
-  export type UsersOauthSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GithubAuthSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    provider?: boolean
+    github_user_id?: boolean
+    github_username?: boolean
+    github_avatar_url?: boolean
     access_token?: boolean
+    refresh_token?: boolean
+    token_type?: boolean
+    expires_at?: boolean
+    refresh_expires_at?: boolean
+    scope?: boolean
+    installation_id?: boolean
+    installation_token?: boolean
+    installation_expires_at?: boolean
+    permissions?: boolean
+    repository_selection?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["usersOauth"]>
+  }, ExtArgs["result"]["githubAuth"]>
 
-  export type UsersOauthSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GithubAuthSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    provider?: boolean
+    github_user_id?: boolean
+    github_username?: boolean
+    github_avatar_url?: boolean
     access_token?: boolean
+    refresh_token?: boolean
+    token_type?: boolean
+    expires_at?: boolean
+    refresh_expires_at?: boolean
+    scope?: boolean
+    installation_id?: boolean
+    installation_token?: boolean
+    installation_expires_at?: boolean
+    permissions?: boolean
+    repository_selection?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["usersOauth"]>
+  }, ExtArgs["result"]["githubAuth"]>
 
-  export type UsersOauthSelectScalar = {
+  export type GithubAuthSelectScalar = {
     id?: boolean
     user_id?: boolean
-    provider?: boolean
+    github_user_id?: boolean
+    github_username?: boolean
+    github_avatar_url?: boolean
     access_token?: boolean
+    refresh_token?: boolean
+    token_type?: boolean
+    expires_at?: boolean
+    refresh_expires_at?: boolean
+    scope?: boolean
+    installation_id?: boolean
+    installation_token?: boolean
+    installation_expires_at?: boolean
+    permissions?: boolean
+    repository_selection?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type UsersOauthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "provider" | "access_token" | "created_at" | "updated_at", ExtArgs["result"]["usersOauth"]>
-  export type UsersOauthInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "github_user_id" | "github_username" | "github_avatar_url" | "access_token" | "refresh_token" | "token_type" | "expires_at" | "refresh_expires_at" | "scope" | "installation_id" | "installation_token" | "installation_expires_at" | "permissions" | "repository_selection" | "created_at" | "updated_at", ExtArgs["result"]["githubAuth"]>
+  export type GithubAuthInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type UsersOauthIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type UsersOauthIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $UsersOauthPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UsersOauth"
+  export type $GithubAuthPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GithubAuth"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       user_id: number
-      provider: $Enums.OauthProvider
+      github_user_id: number | null
+      github_username: string | null
+      github_avatar_url: string | null
       access_token: string
+      refresh_token: string
+      token_type: string
+      expires_at: Date
+      refresh_expires_at: Date
+      scope: string
+      installation_id: string
+      installation_token: string
+      installation_expires_at: Date
+      permissions: Prisma.JsonValue
+      repository_selection: $Enums.GithubAuthRepoSelection
       created_at: Date
       updated_at: Date
-    }, ExtArgs["result"]["usersOauth"]>
+    }, ExtArgs["result"]["githubAuth"]>
     composites: {}
   }
 
-  type UsersOauthGetPayload<S extends boolean | null | undefined | UsersOauthDefaultArgs> = $Result.GetResult<Prisma.$UsersOauthPayload, S>
+  type GithubAuthGetPayload<S extends boolean | null | undefined | GithubAuthDefaultArgs> = $Result.GetResult<Prisma.$GithubAuthPayload, S>
 
-  type UsersOauthCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UsersOauthFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UsersOauthCountAggregateInputType | true
+  type GithubAuthCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GithubAuthFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GithubAuthCountAggregateInputType | true
     }
 
-  export interface UsersOauthDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UsersOauth'], meta: { name: 'UsersOauth' } }
+  export interface GithubAuthDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GithubAuth'], meta: { name: 'GithubAuth' } }
     /**
-     * Find zero or one UsersOauth that matches the filter.
-     * @param {UsersOauthFindUniqueArgs} args - Arguments to find a UsersOauth
+     * Find zero or one GithubAuth that matches the filter.
+     * @param {GithubAuthFindUniqueArgs} args - Arguments to find a GithubAuth
      * @example
-     * // Get one UsersOauth
-     * const usersOauth = await prisma.usersOauth.findUnique({
+     * // Get one GithubAuth
+     * const githubAuth = await prisma.githubAuth.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends UsersOauthFindUniqueArgs>(args: SelectSubset<T, UsersOauthFindUniqueArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends GithubAuthFindUniqueArgs>(args: SelectSubset<T, GithubAuthFindUniqueArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one UsersOauth that matches the filter or throw an error with `error.code='P2025'`
+     * Find one GithubAuth that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {UsersOauthFindUniqueOrThrowArgs} args - Arguments to find a UsersOauth
+     * @param {GithubAuthFindUniqueOrThrowArgs} args - Arguments to find a GithubAuth
      * @example
-     * // Get one UsersOauth
-     * const usersOauth = await prisma.usersOauth.findUniqueOrThrow({
+     * // Get one GithubAuth
+     * const githubAuth = await prisma.githubAuth.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends UsersOauthFindUniqueOrThrowArgs>(args: SelectSubset<T, UsersOauthFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends GithubAuthFindUniqueOrThrowArgs>(args: SelectSubset<T, GithubAuthFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first UsersOauth that matches the filter.
+     * Find the first GithubAuth that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthFindFirstArgs} args - Arguments to find a UsersOauth
+     * @param {GithubAuthFindFirstArgs} args - Arguments to find a GithubAuth
      * @example
-     * // Get one UsersOauth
-     * const usersOauth = await prisma.usersOauth.findFirst({
+     * // Get one GithubAuth
+     * const githubAuth = await prisma.githubAuth.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends UsersOauthFindFirstArgs>(args?: SelectSubset<T, UsersOauthFindFirstArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends GithubAuthFindFirstArgs>(args?: SelectSubset<T, GithubAuthFindFirstArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first UsersOauth that matches the filter or
+     * Find the first GithubAuth that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthFindFirstOrThrowArgs} args - Arguments to find a UsersOauth
+     * @param {GithubAuthFindFirstOrThrowArgs} args - Arguments to find a GithubAuth
      * @example
-     * // Get one UsersOauth
-     * const usersOauth = await prisma.usersOauth.findFirstOrThrow({
+     * // Get one GithubAuth
+     * const githubAuth = await prisma.githubAuth.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends UsersOauthFindFirstOrThrowArgs>(args?: SelectSubset<T, UsersOauthFindFirstOrThrowArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends GithubAuthFindFirstOrThrowArgs>(args?: SelectSubset<T, GithubAuthFindFirstOrThrowArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more UsersOauths that matches the filter.
+     * Find zero or more GithubAuths that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {GithubAuthFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all UsersOauths
-     * const usersOauths = await prisma.usersOauth.findMany()
+     * // Get all GithubAuths
+     * const githubAuths = await prisma.githubAuth.findMany()
      * 
-     * // Get first 10 UsersOauths
-     * const usersOauths = await prisma.usersOauth.findMany({ take: 10 })
+     * // Get first 10 GithubAuths
+     * const githubAuths = await prisma.githubAuth.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const usersOauthWithIdOnly = await prisma.usersOauth.findMany({ select: { id: true } })
+     * const githubAuthWithIdOnly = await prisma.githubAuth.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends UsersOauthFindManyArgs>(args?: SelectSubset<T, UsersOauthFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends GithubAuthFindManyArgs>(args?: SelectSubset<T, GithubAuthFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a UsersOauth.
-     * @param {UsersOauthCreateArgs} args - Arguments to create a UsersOauth.
+     * Create a GithubAuth.
+     * @param {GithubAuthCreateArgs} args - Arguments to create a GithubAuth.
      * @example
-     * // Create one UsersOauth
-     * const UsersOauth = await prisma.usersOauth.create({
+     * // Create one GithubAuth
+     * const GithubAuth = await prisma.githubAuth.create({
      *   data: {
-     *     // ... data to create a UsersOauth
+     *     // ... data to create a GithubAuth
      *   }
      * })
      * 
      */
-    create<T extends UsersOauthCreateArgs>(args: SelectSubset<T, UsersOauthCreateArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends GithubAuthCreateArgs>(args: SelectSubset<T, GithubAuthCreateArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many UsersOauths.
-     * @param {UsersOauthCreateManyArgs} args - Arguments to create many UsersOauths.
+     * Create many GithubAuths.
+     * @param {GithubAuthCreateManyArgs} args - Arguments to create many GithubAuths.
      * @example
-     * // Create many UsersOauths
-     * const usersOauth = await prisma.usersOauth.createMany({
+     * // Create many GithubAuths
+     * const githubAuth = await prisma.githubAuth.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends UsersOauthCreateManyArgs>(args?: SelectSubset<T, UsersOauthCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends GithubAuthCreateManyArgs>(args?: SelectSubset<T, GithubAuthCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many UsersOauths and returns the data saved in the database.
-     * @param {UsersOauthCreateManyAndReturnArgs} args - Arguments to create many UsersOauths.
+     * Create many GithubAuths and returns the data saved in the database.
+     * @param {GithubAuthCreateManyAndReturnArgs} args - Arguments to create many GithubAuths.
      * @example
-     * // Create many UsersOauths
-     * const usersOauth = await prisma.usersOauth.createManyAndReturn({
+     * // Create many GithubAuths
+     * const githubAuth = await prisma.githubAuth.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many UsersOauths and only return the `id`
-     * const usersOauthWithIdOnly = await prisma.usersOauth.createManyAndReturn({
+     * // Create many GithubAuths and only return the `id`
+     * const githubAuthWithIdOnly = await prisma.githubAuth.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2533,28 +2640,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends UsersOauthCreateManyAndReturnArgs>(args?: SelectSubset<T, UsersOauthCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends GithubAuthCreateManyAndReturnArgs>(args?: SelectSubset<T, GithubAuthCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a UsersOauth.
-     * @param {UsersOauthDeleteArgs} args - Arguments to delete one UsersOauth.
+     * Delete a GithubAuth.
+     * @param {GithubAuthDeleteArgs} args - Arguments to delete one GithubAuth.
      * @example
-     * // Delete one UsersOauth
-     * const UsersOauth = await prisma.usersOauth.delete({
+     * // Delete one GithubAuth
+     * const GithubAuth = await prisma.githubAuth.delete({
      *   where: {
-     *     // ... filter to delete one UsersOauth
+     *     // ... filter to delete one GithubAuth
      *   }
      * })
      * 
      */
-    delete<T extends UsersOauthDeleteArgs>(args: SelectSubset<T, UsersOauthDeleteArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends GithubAuthDeleteArgs>(args: SelectSubset<T, GithubAuthDeleteArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one UsersOauth.
-     * @param {UsersOauthUpdateArgs} args - Arguments to update one UsersOauth.
+     * Update one GithubAuth.
+     * @param {GithubAuthUpdateArgs} args - Arguments to update one GithubAuth.
      * @example
-     * // Update one UsersOauth
-     * const usersOauth = await prisma.usersOauth.update({
+     * // Update one GithubAuth
+     * const githubAuth = await prisma.githubAuth.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2564,30 +2671,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends UsersOauthUpdateArgs>(args: SelectSubset<T, UsersOauthUpdateArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends GithubAuthUpdateArgs>(args: SelectSubset<T, GithubAuthUpdateArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more UsersOauths.
-     * @param {UsersOauthDeleteManyArgs} args - Arguments to filter UsersOauths to delete.
+     * Delete zero or more GithubAuths.
+     * @param {GithubAuthDeleteManyArgs} args - Arguments to filter GithubAuths to delete.
      * @example
-     * // Delete a few UsersOauths
-     * const { count } = await prisma.usersOauth.deleteMany({
+     * // Delete a few GithubAuths
+     * const { count } = await prisma.githubAuth.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends UsersOauthDeleteManyArgs>(args?: SelectSubset<T, UsersOauthDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends GithubAuthDeleteManyArgs>(args?: SelectSubset<T, GithubAuthDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more UsersOauths.
+     * Update zero or more GithubAuths.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {GithubAuthUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many UsersOauths
-     * const usersOauth = await prisma.usersOauth.updateMany({
+     * // Update many GithubAuths
+     * const githubAuth = await prisma.githubAuth.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2597,14 +2704,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends UsersOauthUpdateManyArgs>(args: SelectSubset<T, UsersOauthUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends GithubAuthUpdateManyArgs>(args: SelectSubset<T, GithubAuthUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more UsersOauths and returns the data updated in the database.
-     * @param {UsersOauthUpdateManyAndReturnArgs} args - Arguments to update many UsersOauths.
+     * Update zero or more GithubAuths and returns the data updated in the database.
+     * @param {GithubAuthUpdateManyAndReturnArgs} args - Arguments to update many GithubAuths.
      * @example
-     * // Update many UsersOauths
-     * const usersOauth = await prisma.usersOauth.updateManyAndReturn({
+     * // Update many GithubAuths
+     * const githubAuth = await prisma.githubAuth.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2613,8 +2720,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more UsersOauths and only return the `id`
-     * const usersOauthWithIdOnly = await prisma.usersOauth.updateManyAndReturn({
+     * // Update zero or more GithubAuths and only return the `id`
+     * const githubAuthWithIdOnly = await prisma.githubAuth.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2627,56 +2734,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends UsersOauthUpdateManyAndReturnArgs>(args: SelectSubset<T, UsersOauthUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends GithubAuthUpdateManyAndReturnArgs>(args: SelectSubset<T, GithubAuthUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one UsersOauth.
-     * @param {UsersOauthUpsertArgs} args - Arguments to update or create a UsersOauth.
+     * Create or update one GithubAuth.
+     * @param {GithubAuthUpsertArgs} args - Arguments to update or create a GithubAuth.
      * @example
-     * // Update or create a UsersOauth
-     * const usersOauth = await prisma.usersOauth.upsert({
+     * // Update or create a GithubAuth
+     * const githubAuth = await prisma.githubAuth.upsert({
      *   create: {
-     *     // ... data to create a UsersOauth
+     *     // ... data to create a GithubAuth
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the UsersOauth we want to update
+     *     // ... the filter for the GithubAuth we want to update
      *   }
      * })
      */
-    upsert<T extends UsersOauthUpsertArgs>(args: SelectSubset<T, UsersOauthUpsertArgs<ExtArgs>>): Prisma__UsersOauthClient<$Result.GetResult<Prisma.$UsersOauthPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends GithubAuthUpsertArgs>(args: SelectSubset<T, GithubAuthUpsertArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of UsersOauths.
+     * Count the number of GithubAuths.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthCountArgs} args - Arguments to filter UsersOauths to count.
+     * @param {GithubAuthCountArgs} args - Arguments to filter GithubAuths to count.
      * @example
-     * // Count the number of UsersOauths
-     * const count = await prisma.usersOauth.count({
+     * // Count the number of GithubAuths
+     * const count = await prisma.githubAuth.count({
      *   where: {
-     *     // ... the filter for the UsersOauths we want to count
+     *     // ... the filter for the GithubAuths we want to count
      *   }
      * })
     **/
-    count<T extends UsersOauthCountArgs>(
-      args?: Subset<T, UsersOauthCountArgs>,
+    count<T extends GithubAuthCountArgs>(
+      args?: Subset<T, GithubAuthCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], UsersOauthCountAggregateOutputType>
+          : GetScalarType<T['select'], GithubAuthCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a UsersOauth.
+     * Allows you to perform aggregations operations on a GithubAuth.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {GithubAuthAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2696,13 +2803,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends UsersOauthAggregateArgs>(args: Subset<T, UsersOauthAggregateArgs>): Prisma.PrismaPromise<GetUsersOauthAggregateType<T>>
+    aggregate<T extends GithubAuthAggregateArgs>(args: Subset<T, GithubAuthAggregateArgs>): Prisma.PrismaPromise<GetGithubAuthAggregateType<T>>
 
     /**
-     * Group by UsersOauth.
+     * Group by GithubAuth.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UsersOauthGroupByArgs} args - Group by arguments.
+     * @param {GithubAuthGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2717,14 +2824,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends UsersOauthGroupByArgs,
+      T extends GithubAuthGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UsersOauthGroupByArgs['orderBy'] }
-        : { orderBy?: UsersOauthGroupByArgs['orderBy'] },
+        ? { orderBy: GithubAuthGroupByArgs['orderBy'] }
+        : { orderBy?: GithubAuthGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2773,20 +2880,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, UsersOauthGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsersOauthGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, GithubAuthGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGithubAuthGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the UsersOauth model
+   * Fields of the GithubAuth model
    */
-  readonly fields: UsersOauthFieldRefs;
+  readonly fields: GithubAuthFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for UsersOauth.
+   * The delegate class that acts as a "Promise-like" for GithubAuth.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UsersOauthClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__GithubAuthClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -2815,426 +2922,438 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the UsersOauth model
+   * Fields of the GithubAuth model
    */
-  interface UsersOauthFieldRefs {
-    readonly id: FieldRef<"UsersOauth", 'Int'>
-    readonly user_id: FieldRef<"UsersOauth", 'Int'>
-    readonly provider: FieldRef<"UsersOauth", 'OauthProvider'>
-    readonly access_token: FieldRef<"UsersOauth", 'String'>
-    readonly created_at: FieldRef<"UsersOauth", 'DateTime'>
-    readonly updated_at: FieldRef<"UsersOauth", 'DateTime'>
+  interface GithubAuthFieldRefs {
+    readonly id: FieldRef<"GithubAuth", 'Int'>
+    readonly user_id: FieldRef<"GithubAuth", 'Int'>
+    readonly github_user_id: FieldRef<"GithubAuth", 'Int'>
+    readonly github_username: FieldRef<"GithubAuth", 'String'>
+    readonly github_avatar_url: FieldRef<"GithubAuth", 'String'>
+    readonly access_token: FieldRef<"GithubAuth", 'String'>
+    readonly refresh_token: FieldRef<"GithubAuth", 'String'>
+    readonly token_type: FieldRef<"GithubAuth", 'String'>
+    readonly expires_at: FieldRef<"GithubAuth", 'DateTime'>
+    readonly refresh_expires_at: FieldRef<"GithubAuth", 'DateTime'>
+    readonly scope: FieldRef<"GithubAuth", 'String'>
+    readonly installation_id: FieldRef<"GithubAuth", 'String'>
+    readonly installation_token: FieldRef<"GithubAuth", 'String'>
+    readonly installation_expires_at: FieldRef<"GithubAuth", 'DateTime'>
+    readonly permissions: FieldRef<"GithubAuth", 'Json'>
+    readonly repository_selection: FieldRef<"GithubAuth", 'GithubAuthRepoSelection'>
+    readonly created_at: FieldRef<"GithubAuth", 'DateTime'>
+    readonly updated_at: FieldRef<"GithubAuth", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * UsersOauth findUnique
+   * GithubAuth findUnique
    */
-  export type UsersOauthFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter, which UsersOauth to fetch.
+     * Filter, which GithubAuth to fetch.
      */
-    where: UsersOauthWhereUniqueInput
+    where: GithubAuthWhereUniqueInput
   }
 
   /**
-   * UsersOauth findUniqueOrThrow
+   * GithubAuth findUniqueOrThrow
    */
-  export type UsersOauthFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter, which UsersOauth to fetch.
+     * Filter, which GithubAuth to fetch.
      */
-    where: UsersOauthWhereUniqueInput
+    where: GithubAuthWhereUniqueInput
   }
 
   /**
-   * UsersOauth findFirst
+   * GithubAuth findFirst
    */
-  export type UsersOauthFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter, which UsersOauth to fetch.
+     * Filter, which GithubAuth to fetch.
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of UsersOauths to fetch.
+     * Determine the order of GithubAuths to fetch.
      */
-    orderBy?: UsersOauthOrderByWithRelationInput | UsersOauthOrderByWithRelationInput[]
+    orderBy?: GithubAuthOrderByWithRelationInput | GithubAuthOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for UsersOauths.
+     * Sets the position for searching for GithubAuths.
      */
-    cursor?: UsersOauthWhereUniqueInput
+    cursor?: GithubAuthWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` UsersOauths from the position of the cursor.
+     * Take `±n` GithubAuths from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` UsersOauths.
+     * Skip the first `n` GithubAuths.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of UsersOauths.
+     * Filter by unique combinations of GithubAuths.
      */
-    distinct?: UsersOauthScalarFieldEnum | UsersOauthScalarFieldEnum[]
+    distinct?: GithubAuthScalarFieldEnum | GithubAuthScalarFieldEnum[]
   }
 
   /**
-   * UsersOauth findFirstOrThrow
+   * GithubAuth findFirstOrThrow
    */
-  export type UsersOauthFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter, which UsersOauth to fetch.
+     * Filter, which GithubAuth to fetch.
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of UsersOauths to fetch.
+     * Determine the order of GithubAuths to fetch.
      */
-    orderBy?: UsersOauthOrderByWithRelationInput | UsersOauthOrderByWithRelationInput[]
+    orderBy?: GithubAuthOrderByWithRelationInput | GithubAuthOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for UsersOauths.
+     * Sets the position for searching for GithubAuths.
      */
-    cursor?: UsersOauthWhereUniqueInput
+    cursor?: GithubAuthWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` UsersOauths from the position of the cursor.
+     * Take `±n` GithubAuths from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` UsersOauths.
+     * Skip the first `n` GithubAuths.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of UsersOauths.
+     * Filter by unique combinations of GithubAuths.
      */
-    distinct?: UsersOauthScalarFieldEnum | UsersOauthScalarFieldEnum[]
+    distinct?: GithubAuthScalarFieldEnum | GithubAuthScalarFieldEnum[]
   }
 
   /**
-   * UsersOauth findMany
+   * GithubAuth findMany
    */
-  export type UsersOauthFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter, which UsersOauths to fetch.
+     * Filter, which GithubAuths to fetch.
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of UsersOauths to fetch.
+     * Determine the order of GithubAuths to fetch.
      */
-    orderBy?: UsersOauthOrderByWithRelationInput | UsersOauthOrderByWithRelationInput[]
+    orderBy?: GithubAuthOrderByWithRelationInput | GithubAuthOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing UsersOauths.
+     * Sets the position for listing GithubAuths.
      */
-    cursor?: UsersOauthWhereUniqueInput
+    cursor?: GithubAuthWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` UsersOauths from the position of the cursor.
+     * Take `±n` GithubAuths from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` UsersOauths.
+     * Skip the first `n` GithubAuths.
      */
     skip?: number
-    distinct?: UsersOauthScalarFieldEnum | UsersOauthScalarFieldEnum[]
+    distinct?: GithubAuthScalarFieldEnum | GithubAuthScalarFieldEnum[]
   }
 
   /**
-   * UsersOauth create
+   * GithubAuth create
    */
-  export type UsersOauthCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * The data needed to create a UsersOauth.
+     * The data needed to create a GithubAuth.
      */
-    data: XOR<UsersOauthCreateInput, UsersOauthUncheckedCreateInput>
+    data: XOR<GithubAuthCreateInput, GithubAuthUncheckedCreateInput>
   }
 
   /**
-   * UsersOauth createMany
+   * GithubAuth createMany
    */
-  export type UsersOauthCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many UsersOauths.
+     * The data used to create many GithubAuths.
      */
-    data: UsersOauthCreateManyInput | UsersOauthCreateManyInput[]
+    data: GithubAuthCreateManyInput | GithubAuthCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * UsersOauth createManyAndReturn
+   * GithubAuth createManyAndReturn
    */
-  export type UsersOauthCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelectCreateManyAndReturn<ExtArgs> | null
+    select?: GithubAuthSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
-     * The data used to create many UsersOauths.
+     * The data used to create many GithubAuths.
      */
-    data: UsersOauthCreateManyInput | UsersOauthCreateManyInput[]
+    data: GithubAuthCreateManyInput | GithubAuthCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: GithubAuthIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * UsersOauth update
+   * GithubAuth update
    */
-  export type UsersOauthUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * The data needed to update a UsersOauth.
+     * The data needed to update a GithubAuth.
      */
-    data: XOR<UsersOauthUpdateInput, UsersOauthUncheckedUpdateInput>
+    data: XOR<GithubAuthUpdateInput, GithubAuthUncheckedUpdateInput>
     /**
-     * Choose, which UsersOauth to update.
+     * Choose, which GithubAuth to update.
      */
-    where: UsersOauthWhereUniqueInput
+    where: GithubAuthWhereUniqueInput
   }
 
   /**
-   * UsersOauth updateMany
+   * GithubAuth updateMany
    */
-  export type UsersOauthUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update UsersOauths.
+     * The data used to update GithubAuths.
      */
-    data: XOR<UsersOauthUpdateManyMutationInput, UsersOauthUncheckedUpdateManyInput>
+    data: XOR<GithubAuthUpdateManyMutationInput, GithubAuthUncheckedUpdateManyInput>
     /**
-     * Filter which UsersOauths to update
+     * Filter which GithubAuths to update
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
-     * Limit how many UsersOauths to update.
+     * Limit how many GithubAuths to update.
      */
     limit?: number
   }
 
   /**
-   * UsersOauth updateManyAndReturn
+   * GithubAuth updateManyAndReturn
    */
-  export type UsersOauthUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: GithubAuthSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
-     * The data used to update UsersOauths.
+     * The data used to update GithubAuths.
      */
-    data: XOR<UsersOauthUpdateManyMutationInput, UsersOauthUncheckedUpdateManyInput>
+    data: XOR<GithubAuthUpdateManyMutationInput, GithubAuthUncheckedUpdateManyInput>
     /**
-     * Filter which UsersOauths to update
+     * Filter which GithubAuths to update
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
-     * Limit how many UsersOauths to update.
+     * Limit how many GithubAuths to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: GithubAuthIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * UsersOauth upsert
+   * GithubAuth upsert
    */
-  export type UsersOauthUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * The filter to search for the UsersOauth to update in case it exists.
+     * The filter to search for the GithubAuth to update in case it exists.
      */
-    where: UsersOauthWhereUniqueInput
+    where: GithubAuthWhereUniqueInput
     /**
-     * In case the UsersOauth found by the `where` argument doesn't exist, create a new UsersOauth with this data.
+     * In case the GithubAuth found by the `where` argument doesn't exist, create a new GithubAuth with this data.
      */
-    create: XOR<UsersOauthCreateInput, UsersOauthUncheckedCreateInput>
+    create: XOR<GithubAuthCreateInput, GithubAuthUncheckedCreateInput>
     /**
-     * In case the UsersOauth was found with the provided `where` argument, update it with this data.
+     * In case the GithubAuth was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<UsersOauthUpdateInput, UsersOauthUncheckedUpdateInput>
+    update: XOR<GithubAuthUpdateInput, GithubAuthUncheckedUpdateInput>
   }
 
   /**
-   * UsersOauth delete
+   * GithubAuth delete
    */
-  export type UsersOauthDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
     /**
-     * Filter which UsersOauth to delete.
+     * Filter which GithubAuth to delete.
      */
-    where: UsersOauthWhereUniqueInput
+    where: GithubAuthWhereUniqueInput
   }
 
   /**
-   * UsersOauth deleteMany
+   * GithubAuth deleteMany
    */
-  export type UsersOauthDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which UsersOauths to delete
+     * Filter which GithubAuths to delete
      */
-    where?: UsersOauthWhereInput
+    where?: GithubAuthWhereInput
     /**
-     * Limit how many UsersOauths to delete.
+     * Limit how many GithubAuths to delete.
      */
     limit?: number
   }
 
   /**
-   * UsersOauth without action
+   * GithubAuth without action
    */
-  export type UsersOauthDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GithubAuthDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UsersOauth
+     * Select specific fields to fetch from the GithubAuth
      */
-    select?: UsersOauthSelect<ExtArgs> | null
+    select?: GithubAuthSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UsersOauth
+     * Omit specific fields from the GithubAuth
      */
-    omit?: UsersOauthOmit<ExtArgs> | null
+    omit?: GithubAuthOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UsersOauthInclude<ExtArgs> | null
+    include?: GithubAuthInclude<ExtArgs> | null
   }
 
 
@@ -3265,16 +3384,28 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const UsersOauthScalarFieldEnum: {
+  export const GithubAuthScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
-    provider: 'provider',
+    github_user_id: 'github_user_id',
+    github_username: 'github_username',
+    github_avatar_url: 'github_avatar_url',
     access_token: 'access_token',
+    refresh_token: 'refresh_token',
+    token_type: 'token_type',
+    expires_at: 'expires_at',
+    refresh_expires_at: 'refresh_expires_at',
+    scope: 'scope',
+    installation_id: 'installation_id',
+    installation_token: 'installation_token',
+    installation_expires_at: 'installation_expires_at',
+    permissions: 'permissions',
+    repository_selection: 'repository_selection',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
-  export type UsersOauthScalarFieldEnum = (typeof UsersOauthScalarFieldEnum)[keyof typeof UsersOauthScalarFieldEnum]
+  export type GithubAuthScalarFieldEnum = (typeof GithubAuthScalarFieldEnum)[keyof typeof GithubAuthScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3283,6 +3414,13 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -3299,6 +3437,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -3349,16 +3496,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'OauthProvider'
+   * Reference to a field of type 'Json'
    */
-  export type EnumOauthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OauthProvider'>
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
   /**
-   * Reference to a field of type 'OauthProvider[]'
+   * Reference to a field of type 'QueryMode'
    */
-  export type ListEnumOauthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OauthProvider[]'>
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'GithubAuthRepoSelection'
+   */
+  export type EnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GithubAuthRepoSelection'>
+    
+
+
+  /**
+   * Reference to a field of type 'GithubAuthRepoSelection[]'
+   */
+  export type ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GithubAuthRepoSelection[]'>
     
 
 
@@ -3390,7 +3551,7 @@ export namespace Prisma {
     last_name?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeFilter<"User"> | Date | string
     updated_at?: DateTimeFilter<"User"> | Date | string
-    oauth_accounts?: UsersOauthListRelationFilter
+    githubAuth?: XOR<GithubAuthNullableScalarRelationFilter, GithubAuthWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3401,7 +3562,7 @@ export namespace Prisma {
     last_name?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    oauth_accounts?: UsersOauthOrderByRelationAggregateInput
+    githubAuth?: GithubAuthOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3415,7 +3576,7 @@ export namespace Prisma {
     last_name?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeFilter<"User"> | Date | string
     updated_at?: DateTimeFilter<"User"> | Date | string
-    oauth_accounts?: UsersOauthListRelationFilter
+    githubAuth?: XOR<GithubAuthNullableScalarRelationFilter, GithubAuthWhereInput> | null
   }, "id" | "auth_id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -3446,67 +3607,126 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type UsersOauthWhereInput = {
-    AND?: UsersOauthWhereInput | UsersOauthWhereInput[]
-    OR?: UsersOauthWhereInput[]
-    NOT?: UsersOauthWhereInput | UsersOauthWhereInput[]
-    id?: IntFilter<"UsersOauth"> | number
-    user_id?: IntFilter<"UsersOauth"> | number
-    provider?: EnumOauthProviderFilter<"UsersOauth"> | $Enums.OauthProvider
-    access_token?: StringFilter<"UsersOauth"> | string
-    created_at?: DateTimeFilter<"UsersOauth"> | Date | string
-    updated_at?: DateTimeFilter<"UsersOauth"> | Date | string
+  export type GithubAuthWhereInput = {
+    AND?: GithubAuthWhereInput | GithubAuthWhereInput[]
+    OR?: GithubAuthWhereInput[]
+    NOT?: GithubAuthWhereInput | GithubAuthWhereInput[]
+    id?: IntFilter<"GithubAuth"> | number
+    user_id?: IntFilter<"GithubAuth"> | number
+    github_user_id?: IntNullableFilter<"GithubAuth"> | number | null
+    github_username?: StringNullableFilter<"GithubAuth"> | string | null
+    github_avatar_url?: StringNullableFilter<"GithubAuth"> | string | null
+    access_token?: StringFilter<"GithubAuth"> | string
+    refresh_token?: StringFilter<"GithubAuth"> | string
+    token_type?: StringFilter<"GithubAuth"> | string
+    expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    refresh_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    scope?: StringFilter<"GithubAuth"> | string
+    installation_id?: StringFilter<"GithubAuth"> | string
+    installation_token?: StringFilter<"GithubAuth"> | string
+    installation_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    permissions?: JsonFilter<"GithubAuth">
+    repository_selection?: EnumGithubAuthRepoSelectionFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    updated_at?: DateTimeFilter<"GithubAuth"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type UsersOauthOrderByWithRelationInput = {
+  export type GithubAuthOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    provider?: SortOrder
+    github_user_id?: SortOrderInput | SortOrder
+    github_username?: SortOrderInput | SortOrder
+    github_avatar_url?: SortOrderInput | SortOrder
     access_token?: SortOrder
+    refresh_token?: SortOrder
+    token_type?: SortOrder
+    expires_at?: SortOrder
+    refresh_expires_at?: SortOrder
+    scope?: SortOrder
+    installation_id?: SortOrder
+    installation_token?: SortOrder
+    installation_expires_at?: SortOrder
+    permissions?: SortOrder
+    repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
-  export type UsersOauthWhereUniqueInput = Prisma.AtLeast<{
+  export type GithubAuthWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    user_id_provider?: UsersOauthUser_idProviderCompoundUniqueInput
-    AND?: UsersOauthWhereInput | UsersOauthWhereInput[]
-    OR?: UsersOauthWhereInput[]
-    NOT?: UsersOauthWhereInput | UsersOauthWhereInput[]
-    user_id?: IntFilter<"UsersOauth"> | number
-    provider?: EnumOauthProviderFilter<"UsersOauth"> | $Enums.OauthProvider
-    access_token?: StringFilter<"UsersOauth"> | string
-    created_at?: DateTimeFilter<"UsersOauth"> | Date | string
-    updated_at?: DateTimeFilter<"UsersOauth"> | Date | string
+    user_id?: number
+    AND?: GithubAuthWhereInput | GithubAuthWhereInput[]
+    OR?: GithubAuthWhereInput[]
+    NOT?: GithubAuthWhereInput | GithubAuthWhereInput[]
+    github_user_id?: IntNullableFilter<"GithubAuth"> | number | null
+    github_username?: StringNullableFilter<"GithubAuth"> | string | null
+    github_avatar_url?: StringNullableFilter<"GithubAuth"> | string | null
+    access_token?: StringFilter<"GithubAuth"> | string
+    refresh_token?: StringFilter<"GithubAuth"> | string
+    token_type?: StringFilter<"GithubAuth"> | string
+    expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    refresh_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    scope?: StringFilter<"GithubAuth"> | string
+    installation_id?: StringFilter<"GithubAuth"> | string
+    installation_token?: StringFilter<"GithubAuth"> | string
+    installation_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    permissions?: JsonFilter<"GithubAuth">
+    repository_selection?: EnumGithubAuthRepoSelectionFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    updated_at?: DateTimeFilter<"GithubAuth"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "user_id_provider">
+  }, "id" | "user_id">
 
-  export type UsersOauthOrderByWithAggregationInput = {
+  export type GithubAuthOrderByWithAggregationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    provider?: SortOrder
+    github_user_id?: SortOrderInput | SortOrder
+    github_username?: SortOrderInput | SortOrder
+    github_avatar_url?: SortOrderInput | SortOrder
     access_token?: SortOrder
+    refresh_token?: SortOrder
+    token_type?: SortOrder
+    expires_at?: SortOrder
+    refresh_expires_at?: SortOrder
+    scope?: SortOrder
+    installation_id?: SortOrder
+    installation_token?: SortOrder
+    installation_expires_at?: SortOrder
+    permissions?: SortOrder
+    repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    _count?: UsersOauthCountOrderByAggregateInput
-    _avg?: UsersOauthAvgOrderByAggregateInput
-    _max?: UsersOauthMaxOrderByAggregateInput
-    _min?: UsersOauthMinOrderByAggregateInput
-    _sum?: UsersOauthSumOrderByAggregateInput
+    _count?: GithubAuthCountOrderByAggregateInput
+    _avg?: GithubAuthAvgOrderByAggregateInput
+    _max?: GithubAuthMaxOrderByAggregateInput
+    _min?: GithubAuthMinOrderByAggregateInput
+    _sum?: GithubAuthSumOrderByAggregateInput
   }
 
-  export type UsersOauthScalarWhereWithAggregatesInput = {
-    AND?: UsersOauthScalarWhereWithAggregatesInput | UsersOauthScalarWhereWithAggregatesInput[]
-    OR?: UsersOauthScalarWhereWithAggregatesInput[]
-    NOT?: UsersOauthScalarWhereWithAggregatesInput | UsersOauthScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"UsersOauth"> | number
-    user_id?: IntWithAggregatesFilter<"UsersOauth"> | number
-    provider?: EnumOauthProviderWithAggregatesFilter<"UsersOauth"> | $Enums.OauthProvider
-    access_token?: StringWithAggregatesFilter<"UsersOauth"> | string
-    created_at?: DateTimeWithAggregatesFilter<"UsersOauth"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"UsersOauth"> | Date | string
+  export type GithubAuthScalarWhereWithAggregatesInput = {
+    AND?: GithubAuthScalarWhereWithAggregatesInput | GithubAuthScalarWhereWithAggregatesInput[]
+    OR?: GithubAuthScalarWhereWithAggregatesInput[]
+    NOT?: GithubAuthScalarWhereWithAggregatesInput | GithubAuthScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GithubAuth"> | number
+    user_id?: IntWithAggregatesFilter<"GithubAuth"> | number
+    github_user_id?: IntNullableWithAggregatesFilter<"GithubAuth"> | number | null
+    github_username?: StringNullableWithAggregatesFilter<"GithubAuth"> | string | null
+    github_avatar_url?: StringNullableWithAggregatesFilter<"GithubAuth"> | string | null
+    access_token?: StringWithAggregatesFilter<"GithubAuth"> | string
+    refresh_token?: StringWithAggregatesFilter<"GithubAuth"> | string
+    token_type?: StringWithAggregatesFilter<"GithubAuth"> | string
+    expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+    refresh_expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+    scope?: StringWithAggregatesFilter<"GithubAuth"> | string
+    installation_id?: StringWithAggregatesFilter<"GithubAuth"> | string
+    installation_token?: StringWithAggregatesFilter<"GithubAuth"> | string
+    installation_expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+    permissions?: JsonWithAggregatesFilter<"GithubAuth">
+    repository_selection?: EnumGithubAuthRepoSelectionWithAggregatesFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -3516,7 +3736,7 @@ export namespace Prisma {
     last_name?: string | null
     created_at?: Date | string
     updated_at?: Date | string
-    oauth_accounts?: UsersOauthCreateNestedManyWithoutUserInput
+    githubAuth?: GithubAuthCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3527,7 +3747,7 @@ export namespace Prisma {
     last_name?: string | null
     created_at?: Date | string
     updated_at?: Date | string
-    oauth_accounts?: UsersOauthUncheckedCreateNestedManyWithoutUserInput
+    githubAuth?: GithubAuthUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3537,7 +3757,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    oauth_accounts?: UsersOauthUpdateManyWithoutUserNestedInput
+    githubAuth?: GithubAuthUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3548,7 +3768,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    oauth_accounts?: UsersOauthUncheckedUpdateManyWithoutUserNestedInput
+    githubAuth?: GithubAuthUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3580,61 +3800,145 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UsersOauthCreateInput = {
-    provider: $Enums.OauthProvider
+  export type GithubAuthCreateInput = {
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
-    user: UserCreateNestedOneWithoutOauth_accountsInput
+    user: UserCreateNestedOneWithoutGithubAuthInput
   }
 
-  export type UsersOauthUncheckedCreateInput = {
+  export type GithubAuthUncheckedCreateInput = {
     id?: number
     user_id: number
-    provider: $Enums.OauthProvider
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type UsersOauthUpdateInput = {
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
+  export type GithubAuthUpdateInput = {
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
     access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutOauth_accountsNestedInput
+    user?: UserUpdateOneRequiredWithoutGithubAuthNestedInput
   }
 
-  export type UsersOauthUncheckedUpdateInput = {
+  export type GithubAuthUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
     access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UsersOauthCreateManyInput = {
+  export type GithubAuthCreateManyInput = {
     id?: number
     user_id: number
-    provider: $Enums.OauthProvider
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type UsersOauthUpdateManyMutationInput = {
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
+  export type GithubAuthUpdateManyMutationInput = {
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
     access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UsersOauthUncheckedUpdateManyInput = {
+  export type GithubAuthUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
     access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3691,19 +3995,14 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type UsersOauthListRelationFilter = {
-    every?: UsersOauthWhereInput
-    some?: UsersOauthWhereInput
-    none?: UsersOauthWhereInput
+  export type GithubAuthNullableScalarRelationFilter = {
+    is?: GithubAuthWhereInput | null
+    isNot?: GithubAuthWhereInput | null
   }
 
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type UsersOauthOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -3810,11 +4109,45 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumOauthProviderFilter<$PrismaModel = never> = {
-    equals?: $Enums.OauthProvider | EnumOauthProviderFieldRefInput<$PrismaModel>
-    in?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    not?: NestedEnumOauthProviderFilter<$PrismaModel> | $Enums.OauthProvider
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type EnumGithubAuthRepoSelectionFilter<$PrismaModel = never> = {
+    equals?: $Enums.GithubAuthRepoSelection | EnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    in?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    not?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel> | $Enums.GithubAuthRepoSelection
   }
 
   export type UserScalarRelationFilter = {
@@ -3822,70 +4155,141 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
-  export type UsersOauthUser_idProviderCompoundUniqueInput = {
-    user_id: number
-    provider: $Enums.OauthProvider
-  }
-
-  export type UsersOauthCountOrderByAggregateInput = {
+  export type GithubAuthCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    provider?: SortOrder
+    github_user_id?: SortOrder
+    github_username?: SortOrder
+    github_avatar_url?: SortOrder
     access_token?: SortOrder
+    refresh_token?: SortOrder
+    token_type?: SortOrder
+    expires_at?: SortOrder
+    refresh_expires_at?: SortOrder
+    scope?: SortOrder
+    installation_id?: SortOrder
+    installation_token?: SortOrder
+    installation_expires_at?: SortOrder
+    permissions?: SortOrder
+    repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type UsersOauthAvgOrderByAggregateInput = {
+  export type GithubAuthAvgOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
+    github_user_id?: SortOrder
   }
 
-  export type UsersOauthMaxOrderByAggregateInput = {
+  export type GithubAuthMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    provider?: SortOrder
+    github_user_id?: SortOrder
+    github_username?: SortOrder
+    github_avatar_url?: SortOrder
     access_token?: SortOrder
+    refresh_token?: SortOrder
+    token_type?: SortOrder
+    expires_at?: SortOrder
+    refresh_expires_at?: SortOrder
+    scope?: SortOrder
+    installation_id?: SortOrder
+    installation_token?: SortOrder
+    installation_expires_at?: SortOrder
+    repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type UsersOauthMinOrderByAggregateInput = {
+  export type GithubAuthMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    provider?: SortOrder
+    github_user_id?: SortOrder
+    github_username?: SortOrder
+    github_avatar_url?: SortOrder
     access_token?: SortOrder
+    refresh_token?: SortOrder
+    token_type?: SortOrder
+    expires_at?: SortOrder
+    refresh_expires_at?: SortOrder
+    scope?: SortOrder
+    installation_id?: SortOrder
+    installation_token?: SortOrder
+    installation_expires_at?: SortOrder
+    repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type UsersOauthSumOrderByAggregateInput = {
+  export type GithubAuthSumOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
+    github_user_id?: SortOrder
   }
 
-  export type EnumOauthProviderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.OauthProvider | EnumOauthProviderFieldRefInput<$PrismaModel>
-    in?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    not?: NestedEnumOauthProviderWithAggregatesFilter<$PrismaModel> | $Enums.OauthProvider
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumOauthProviderFilter<$PrismaModel>
-    _max?: NestedEnumOauthProviderFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type UsersOauthCreateNestedManyWithoutUserInput = {
-    create?: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput> | UsersOauthCreateWithoutUserInput[] | UsersOauthUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsersOauthCreateOrConnectWithoutUserInput | UsersOauthCreateOrConnectWithoutUserInput[]
-    createMany?: UsersOauthCreateManyUserInputEnvelope
-    connect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
+  export type EnumGithubAuthRepoSelectionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.GithubAuthRepoSelection | EnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    in?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    not?: NestedEnumGithubAuthRepoSelectionWithAggregatesFilter<$PrismaModel> | $Enums.GithubAuthRepoSelection
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
+    _max?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
   }
 
-  export type UsersOauthUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput> | UsersOauthCreateWithoutUserInput[] | UsersOauthUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsersOauthCreateOrConnectWithoutUserInput | UsersOauthCreateOrConnectWithoutUserInput[]
-    createMany?: UsersOauthCreateManyUserInputEnvelope
-    connect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
+  export type GithubAuthCreateNestedOneWithoutUserInput = {
+    create?: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutUserInput
+    connect?: GithubAuthWhereUniqueInput
+  }
+
+  export type GithubAuthUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutUserInput
+    connect?: GithubAuthWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3900,18 +4304,14 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type UsersOauthUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput> | UsersOauthCreateWithoutUserInput[] | UsersOauthUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsersOauthCreateOrConnectWithoutUserInput | UsersOauthCreateOrConnectWithoutUserInput[]
-    upsert?: UsersOauthUpsertWithWhereUniqueWithoutUserInput | UsersOauthUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UsersOauthCreateManyUserInputEnvelope
-    set?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    disconnect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    delete?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    connect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    update?: UsersOauthUpdateWithWhereUniqueWithoutUserInput | UsersOauthUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UsersOauthUpdateManyWithWhereWithoutUserInput | UsersOauthUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UsersOauthScalarWhereInput | UsersOauthScalarWhereInput[]
+  export type GithubAuthUpdateOneWithoutUserNestedInput = {
+    create?: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutUserInput
+    upsert?: GithubAuthUpsertWithoutUserInput
+    disconnect?: GithubAuthWhereInput | boolean
+    delete?: GithubAuthWhereInput | boolean
+    connect?: GithubAuthWhereUniqueInput
+    update?: XOR<XOR<GithubAuthUpdateToOneWithWhereWithoutUserInput, GithubAuthUpdateWithoutUserInput>, GithubAuthUncheckedUpdateWithoutUserInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3922,36 +4322,40 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type UsersOauthUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput> | UsersOauthCreateWithoutUserInput[] | UsersOauthUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsersOauthCreateOrConnectWithoutUserInput | UsersOauthCreateOrConnectWithoutUserInput[]
-    upsert?: UsersOauthUpsertWithWhereUniqueWithoutUserInput | UsersOauthUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UsersOauthCreateManyUserInputEnvelope
-    set?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    disconnect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    delete?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    connect?: UsersOauthWhereUniqueInput | UsersOauthWhereUniqueInput[]
-    update?: UsersOauthUpdateWithWhereUniqueWithoutUserInput | UsersOauthUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UsersOauthUpdateManyWithWhereWithoutUserInput | UsersOauthUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UsersOauthScalarWhereInput | UsersOauthScalarWhereInput[]
+  export type GithubAuthUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutUserInput
+    upsert?: GithubAuthUpsertWithoutUserInput
+    disconnect?: GithubAuthWhereInput | boolean
+    delete?: GithubAuthWhereInput | boolean
+    connect?: GithubAuthWhereUniqueInput
+    update?: XOR<XOR<GithubAuthUpdateToOneWithWhereWithoutUserInput, GithubAuthUpdateWithoutUserInput>, GithubAuthUncheckedUpdateWithoutUserInput>
   }
 
-  export type UserCreateNestedOneWithoutOauth_accountsInput = {
-    create?: XOR<UserCreateWithoutOauth_accountsInput, UserUncheckedCreateWithoutOauth_accountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOauth_accountsInput
+  export type UserCreateNestedOneWithoutGithubAuthInput = {
+    create?: XOR<UserCreateWithoutGithubAuthInput, UserUncheckedCreateWithoutGithubAuthInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGithubAuthInput
     connect?: UserWhereUniqueInput
   }
 
-  export type EnumOauthProviderFieldUpdateOperationsInput = {
-    set?: $Enums.OauthProvider
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type UserUpdateOneRequiredWithoutOauth_accountsNestedInput = {
-    create?: XOR<UserCreateWithoutOauth_accountsInput, UserUncheckedCreateWithoutOauth_accountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOauth_accountsInput
-    upsert?: UserUpsertWithoutOauth_accountsInput
+  export type EnumGithubAuthRepoSelectionFieldUpdateOperationsInput = {
+    set?: $Enums.GithubAuthRepoSelection
+  }
+
+  export type UserUpdateOneRequiredWithoutGithubAuthNestedInput = {
+    create?: XOR<UserCreateWithoutGithubAuthInput, UserUncheckedCreateWithoutGithubAuthInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGithubAuthInput
+    upsert?: UserUpsertWithoutGithubAuthInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOauth_accountsInput, UserUpdateWithoutOauth_accountsInput>, UserUncheckedUpdateWithoutOauth_accountsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGithubAuthInput, UserUpdateWithoutGithubAuthInput>, UserUncheckedUpdateWithoutGithubAuthInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4090,77 +4494,168 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumOauthProviderFilter<$PrismaModel = never> = {
-    equals?: $Enums.OauthProvider | EnumOauthProviderFieldRefInput<$PrismaModel>
-    in?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    not?: NestedEnumOauthProviderFilter<$PrismaModel> | $Enums.OauthProvider
+  export type NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel = never> = {
+    equals?: $Enums.GithubAuthRepoSelection | EnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    in?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    not?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel> | $Enums.GithubAuthRepoSelection
   }
 
-  export type NestedEnumOauthProviderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.OauthProvider | EnumOauthProviderFieldRefInput<$PrismaModel>
-    in?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.OauthProvider[] | ListEnumOauthProviderFieldRefInput<$PrismaModel>
-    not?: NestedEnumOauthProviderWithAggregatesFilter<$PrismaModel> | $Enums.OauthProvider
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumGithubAuthRepoSelectionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.GithubAuthRepoSelection | EnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    in?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.GithubAuthRepoSelection[] | ListEnumGithubAuthRepoSelectionFieldRefInput<$PrismaModel>
+    not?: NestedEnumGithubAuthRepoSelectionWithAggregatesFilter<$PrismaModel> | $Enums.GithubAuthRepoSelection
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumOauthProviderFilter<$PrismaModel>
-    _max?: NestedEnumOauthProviderFilter<$PrismaModel>
+    _min?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
+    _max?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
   }
 
-  export type UsersOauthCreateWithoutUserInput = {
-    provider: $Enums.OauthProvider
+  export type GithubAuthCreateWithoutUserInput = {
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type UsersOauthUncheckedCreateWithoutUserInput = {
+  export type GithubAuthUncheckedCreateWithoutUserInput = {
     id?: number
-    provider: $Enums.OauthProvider
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
     access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token: string
+    installation_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type UsersOauthCreateOrConnectWithoutUserInput = {
-    where: UsersOauthWhereUniqueInput
-    create: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput>
+  export type GithubAuthCreateOrConnectWithoutUserInput = {
+    where: GithubAuthWhereUniqueInput
+    create: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
   }
 
-  export type UsersOauthCreateManyUserInputEnvelope = {
-    data: UsersOauthCreateManyUserInput | UsersOauthCreateManyUserInput[]
-    skipDuplicates?: boolean
+  export type GithubAuthUpsertWithoutUserInput = {
+    update: XOR<GithubAuthUpdateWithoutUserInput, GithubAuthUncheckedUpdateWithoutUserInput>
+    create: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
+    where?: GithubAuthWhereInput
   }
 
-  export type UsersOauthUpsertWithWhereUniqueWithoutUserInput = {
-    where: UsersOauthWhereUniqueInput
-    update: XOR<UsersOauthUpdateWithoutUserInput, UsersOauthUncheckedUpdateWithoutUserInput>
-    create: XOR<UsersOauthCreateWithoutUserInput, UsersOauthUncheckedCreateWithoutUserInput>
+  export type GithubAuthUpdateToOneWithWhereWithoutUserInput = {
+    where?: GithubAuthWhereInput
+    data: XOR<GithubAuthUpdateWithoutUserInput, GithubAuthUncheckedUpdateWithoutUserInput>
   }
 
-  export type UsersOauthUpdateWithWhereUniqueWithoutUserInput = {
-    where: UsersOauthWhereUniqueInput
-    data: XOR<UsersOauthUpdateWithoutUserInput, UsersOauthUncheckedUpdateWithoutUserInput>
+  export type GithubAuthUpdateWithoutUserInput = {
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UsersOauthUpdateManyWithWhereWithoutUserInput = {
-    where: UsersOauthScalarWhereInput
-    data: XOR<UsersOauthUpdateManyMutationInput, UsersOauthUncheckedUpdateManyWithoutUserInput>
+  export type GithubAuthUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token?: StringFieldUpdateOperationsInput | string
+    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UsersOauthScalarWhereInput = {
-    AND?: UsersOauthScalarWhereInput | UsersOauthScalarWhereInput[]
-    OR?: UsersOauthScalarWhereInput[]
-    NOT?: UsersOauthScalarWhereInput | UsersOauthScalarWhereInput[]
-    id?: IntFilter<"UsersOauth"> | number
-    user_id?: IntFilter<"UsersOauth"> | number
-    provider?: EnumOauthProviderFilter<"UsersOauth"> | $Enums.OauthProvider
-    access_token?: StringFilter<"UsersOauth"> | string
-    created_at?: DateTimeFilter<"UsersOauth"> | Date | string
-    updated_at?: DateTimeFilter<"UsersOauth"> | Date | string
-  }
-
-  export type UserCreateWithoutOauth_accountsInput = {
+  export type UserCreateWithoutGithubAuthInput = {
     auth_id: string
     email: string
     first_name?: string | null
@@ -4169,7 +4664,7 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
-  export type UserUncheckedCreateWithoutOauth_accountsInput = {
+  export type UserUncheckedCreateWithoutGithubAuthInput = {
     id?: number
     auth_id: string
     email: string
@@ -4179,23 +4674,23 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
-  export type UserCreateOrConnectWithoutOauth_accountsInput = {
+  export type UserCreateOrConnectWithoutGithubAuthInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOauth_accountsInput, UserUncheckedCreateWithoutOauth_accountsInput>
+    create: XOR<UserCreateWithoutGithubAuthInput, UserUncheckedCreateWithoutGithubAuthInput>
   }
 
-  export type UserUpsertWithoutOauth_accountsInput = {
-    update: XOR<UserUpdateWithoutOauth_accountsInput, UserUncheckedUpdateWithoutOauth_accountsInput>
-    create: XOR<UserCreateWithoutOauth_accountsInput, UserUncheckedCreateWithoutOauth_accountsInput>
+  export type UserUpsertWithoutGithubAuthInput = {
+    update: XOR<UserUpdateWithoutGithubAuthInput, UserUncheckedUpdateWithoutGithubAuthInput>
+    create: XOR<UserCreateWithoutGithubAuthInput, UserUncheckedCreateWithoutGithubAuthInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutOauth_accountsInput = {
+  export type UserUpdateToOneWithWhereWithoutGithubAuthInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOauth_accountsInput, UserUncheckedUpdateWithoutOauth_accountsInput>
+    data: XOR<UserUpdateWithoutGithubAuthInput, UserUncheckedUpdateWithoutGithubAuthInput>
   }
 
-  export type UserUpdateWithoutOauth_accountsInput = {
+  export type UserUpdateWithoutGithubAuthInput = {
     auth_id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4204,43 +4699,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUncheckedUpdateWithoutOauth_accountsInput = {
+  export type UserUncheckedUpdateWithoutGithubAuthInput = {
     id?: IntFieldUpdateOperationsInput | number
     auth_id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UsersOauthCreateManyUserInput = {
-    id?: number
-    provider: $Enums.OauthProvider
-    access_token: string
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type UsersOauthUpdateWithoutUserInput = {
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
-    access_token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UsersOauthUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
-    access_token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UsersOauthUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumOauthProviderFieldUpdateOperationsInput | $Enums.OauthProvider
-    access_token?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

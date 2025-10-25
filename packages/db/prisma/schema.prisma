@@ -9,38 +9,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum OauthProvider {
-  GITHUB
-  GOOGLE
-  FACEBOOK
-
-  @@map("oauth_provider")
-}
-
 model User {
   id    Int     @id @default(autoincrement())
   auth_id String  @unique
   email String  @unique
   first_name  String?
   last_name   String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
 
-  oauth_accounts UsersOauth[]
+  githubAuth  GithubAuth?  @relation
+
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
 
   @@map("users")
 }
 
-model UsersOauth {
-  id          Int      @id @default(autoincrement())
-  user_id     Int
-  provider    OauthProvider
-  access_token   String   
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+enum GithubAuthRepoSelection {
+  ALL
+  SELECTED
 
-  user User @relation(fields: [user_id], references: [id])
+  @@map("github_auth_repo_selection")
+}
 
-  @@unique([user_id, provider])
-  @@map("users_oauth")
+model GithubAuth {
+  id                     Int       @id @default(autoincrement())
+
+  // --- Relation to your app user ---
+  user_id                Int       @unique
+  user                   User      @relation(fields: [user_id], references: [id])
+
+  // --- User OAuth ---
+  github_user_id         Int?      // --
+  github_username        String?   // --
+  github_avatar_url      String?   // These are optional since based on the auth flow used this can only be added when github's /user endpoint is hit and that's done in the background process.
+  access_token           String    
+  refresh_token          String   
+  token_type             String   // usually "bearer"
+  expires_at             DateTime  @db.Timestamptz(3)
+  refresh_expires_at     DateTime  @db.Timestamptz(3)
+  scope                  String   // usually empty string
+
+  // --- App Installation ---
+  installation_id        String
+  installation_token     String
+  installation_expires_at DateTime
+  permissions            Json
+  repository_selection   GithubAuthRepoSelection 
+
+  created_at             DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at             DateTime  @updatedAt @db.Timestamptz(3)
+
+  @@map("github_auth")
 }

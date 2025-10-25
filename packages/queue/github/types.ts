@@ -3,8 +3,7 @@ export enum GithubJobName {
 }
 
 export type UserReposGetJob = {
-    userId: string;
-    githubAccessToken: string;
+    userId: number;
 };
 
 export type GithubJobPayloads = {

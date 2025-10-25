@@ -1,9 +1,9 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 
-import users from "./features/users.js";
-import webhooks from "./features/webhooks.js";
-import auth from "./features/auth.js";
+import users from "./users/route.js";
+import webhooks from "./webhooks/routes.js";
+import auth from "./auth/routes.js";
 
 import "dotenv/config";
 
