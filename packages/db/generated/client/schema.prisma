@@ -41,7 +41,7 @@ model GithubAuth {
   // --- User OAuth ---
   github_user_id     Int? // --
   github_username    String? // --
-  github_avatar_url  String? // These are optional since based on the auth flow used this can only be added when github's /user endpoint is hit and that's done in the background process.
+  github_avatar_url  String? // These are optional since based on the auth flow used, this can only be added when github's /user endpoint is hit and that's done in the background process after installing the github app
   access_token       String
   refresh_token      String
   token_type         String // usually "bearer"
@@ -50,11 +50,10 @@ model GithubAuth {
   scope              String // usually empty string
 
   // --- App Installation ---
-  installation_id         String
-  installation_token      String
-  installation_expires_at DateTime
-  permissions             Json
-  repository_selection    GithubAuthRepoSelection
+  installation_id               String
+  installation_token_expires_at DateTime
+  permissions                   Json
+  repository_selection          GithubAuthRepoSelection
 
   created_at DateTime @default(now()) @db.Timestamptz(3)
   updated_at DateTime @updatedAt @db.Timestamptz(3)

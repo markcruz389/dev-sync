@@ -3,6 +3,10 @@ services:
         build:
             context: .
             dockerfile: apps/api/Dockerfile.dev
+        depends_on:
+            - redis
+            - db
+            - worker
         working_dir: /app/apps/api
         environment:
             CLERK_WEBHOOK_SIGNING_SECRET: ${CLERK_WEBHOOK_SIGNING_SECRET}
@@ -23,6 +27,8 @@ services:
             - /app/apps/api/node_modules
         ports:
             - "${API_PORT:-8888}:8888"
+        networks:
+            - devsync-network # 👈 Add network reference here
 
     db:
         image: postgres:18-alpine
@@ -36,12 +42,16 @@ services:
             - db_data:/var/lib/postgresql/data
         ports:
             - "${POSTGRES_PORT:-5432}:5432"
+        networks:
+            - devsync-network # 👈 Add network reference here
 
     redis:
         image: redis:8.2.2-alpine
         container_name: redis
         ports:
             - "6379:6379"
+        networks:
+            - devsync-network # 👈 Add network reference here
 
     worker:
         build:
@@ -49,6 +59,7 @@ services:
             dockerfile: apps/worker/Dockerfile.dev
         depends_on:
             - redis
+            - db
         environment:
             DATABASE_URL: ${DATABASE_URL}
             NODE_ENV: ${NODE_ENV}
@@ -57,6 +68,12 @@ services:
         volumes:
             - .:/app
             - /app/node_modules
+        networks:
+            - devsync-network # 👈 Add network reference here
 
 volumes:
     db_data:
+
+networks:
+    devsync-network:
+        driver: bridge

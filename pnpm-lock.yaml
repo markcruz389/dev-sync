@@ -19,6 +19,9 @@ importers:
       '@clerk/backend':
         specifier: ^2.18.3
         version: 2.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@devsync/cache':
+        specifier: workspace:*
+        version: link:../../packages/cache
       '@devsync/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -201,6 +204,9 @@ importers:
 
   apps/worker:
     dependencies:
+      '@devsync/cache':
+        specifier: workspace:*
+        version: link:../../packages/cache
       '@devsync/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -229,6 +235,16 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+
+  packages/cache:
+    dependencies:
+      ioredis:
+        specifier: ^5.8.2
+        version: 5.8.2
+    devDependencies:
+      '@types/node':
+        specifier: ^24.9.1
+        version: 24.9.1
 
   packages/db:
     dependencies:

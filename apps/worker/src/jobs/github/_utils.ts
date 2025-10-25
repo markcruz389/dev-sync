@@ -1,7 +1,7 @@
 import { prisma } from "@devsync/db";
 import { getTokenExpiryDate } from "@devsync/utils";
 
-export function shouldRefreshOauthToken({ expiresAt }: { expiresAt: Date }) {
+export function isAuthTokenExpired({ expiresAt }: { expiresAt: Date }) {
     if (expiresAt < new Date()) return true;
 
     return false;

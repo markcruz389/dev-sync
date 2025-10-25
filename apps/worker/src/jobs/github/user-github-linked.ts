@@ -2,7 +2,8 @@ import type { UserGithubLinkedJob } from "@devsync/queue/github/types.js";
 import { prisma } from "@devsync/db";
 import { getOctokitForUser } from "../../_lib/octokit.js";
 import { logger } from "../../_utils/logger.js";
-import { refreshUserOauthToken, shouldRefreshOauthToken } from "./_utils.js";
+import { refreshUserOauthToken, isAuthTokenExpired } from "./_utils.js";
+import { getGhInstallationAuth, getRedis } from "@devsync/cache";
 
 async function saveGithubProfileData({
     accessToken,
@@ -42,6 +43,7 @@ export async function userGithubLinked(data: UserGithubLinkedJob) {
                         access_token: true,
                         expires_at: true,
                         refresh_token: true,
+                        installation_id: true,
                     },
                 },
             },
@@ -51,9 +53,7 @@ export async function userGithubLinked(data: UserGithubLinkedJob) {
         }
 
         let accessToken = user.githubAuth.access_token;
-        if (
-            shouldRefreshOauthToken({ expiresAt: user.githubAuth.expires_at })
-        ) {
+        if (isAuthTokenExpired({ expiresAt: user.githubAuth.expires_at })) {
             const { newToken } = await refreshUserOauthToken({
                 userId,
                 refreshToken: user.githubAuth.refresh_token,
@@ -65,6 +65,13 @@ export async function userGithubLinked(data: UserGithubLinkedJob) {
             accessToken,
             userId: user.id,
         });
+
+        const redis = getRedis();
+        const installationToken = await getGhInstallationAuth({
+            redis,
+            installationId: user.githubAuth.installation_id,
+        });
+        console.log("installationToken", installationToken);
 
         // TODO: Handle saving user's granted repositories
 

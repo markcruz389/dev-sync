@@ -7,6 +7,8 @@ import {
     getInstallationAuth,
     getUserIdFromState,
 } from "./services.js";
+import { getRedis, setGhInstallationAuth } from "@devsync/cache";
+import { set } from "zod";
 
 const app = new Hono();
 
@@ -80,6 +82,14 @@ app.get("/github/install/callback", async (c) => {
         select: { id: true },
     });
 
+    const redis = getRedis();
+    await setGhInstallationAuth({
+        redis,
+        installationId: installationId,
+        token: installationAuth.token,
+        expiresAtISO: installationAuth.expires_at,
+    });
+
     await prisma.githubAuth.create({
         data: {
             user_id: user.id,
@@ -93,8 +103,8 @@ app.get("/github/install/callback", async (c) => {
             scope: userAuth.scope,
 
             installation_id: installationId,
-            installation_token: installationAuth.token,
-            installation_expires_at: getTokenExpiryDate({
+            // we're not storing installationAuth.token since it's short-lived and cached in Redis
+            installation_token_expires_at: getTokenExpiryDate({
                 expiresAt: installationAuth.expires_at,
             }),
             permissions: installationAuth.permissions,

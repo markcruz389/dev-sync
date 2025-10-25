@@ -2129,8 +2129,7 @@ export namespace Prisma {
     refresh_expires_at: Date | null
     scope: string | null
     installation_id: string | null
-    installation_token: string | null
-    installation_expires_at: Date | null
+    installation_token_expires_at: Date | null
     repository_selection: $Enums.GithubAuthRepoSelection | null
     created_at: Date | null
     updated_at: Date | null
@@ -2149,8 +2148,7 @@ export namespace Prisma {
     refresh_expires_at: Date | null
     scope: string | null
     installation_id: string | null
-    installation_token: string | null
-    installation_expires_at: Date | null
+    installation_token_expires_at: Date | null
     repository_selection: $Enums.GithubAuthRepoSelection | null
     created_at: Date | null
     updated_at: Date | null
@@ -2169,8 +2167,7 @@ export namespace Prisma {
     refresh_expires_at: number
     scope: number
     installation_id: number
-    installation_token: number
-    installation_expires_at: number
+    installation_token_expires_at: number
     permissions: number
     repository_selection: number
     created_at: number
@@ -2204,8 +2201,7 @@ export namespace Prisma {
     refresh_expires_at?: true
     scope?: true
     installation_id?: true
-    installation_token?: true
-    installation_expires_at?: true
+    installation_token_expires_at?: true
     repository_selection?: true
     created_at?: true
     updated_at?: true
@@ -2224,8 +2220,7 @@ export namespace Prisma {
     refresh_expires_at?: true
     scope?: true
     installation_id?: true
-    installation_token?: true
-    installation_expires_at?: true
+    installation_token_expires_at?: true
     repository_selection?: true
     created_at?: true
     updated_at?: true
@@ -2244,8 +2239,7 @@ export namespace Prisma {
     refresh_expires_at?: true
     scope?: true
     installation_id?: true
-    installation_token?: true
-    installation_expires_at?: true
+    installation_token_expires_at?: true
     permissions?: true
     repository_selection?: true
     created_at?: true
@@ -2352,8 +2346,7 @@ export namespace Prisma {
     refresh_expires_at: Date
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date
+    installation_token_expires_at: Date
     permissions: JsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at: Date
@@ -2392,8 +2385,7 @@ export namespace Prisma {
     refresh_expires_at?: boolean
     scope?: boolean
     installation_id?: boolean
-    installation_token?: boolean
-    installation_expires_at?: boolean
+    installation_token_expires_at?: boolean
     permissions?: boolean
     repository_selection?: boolean
     created_at?: boolean
@@ -2414,8 +2406,7 @@ export namespace Prisma {
     refresh_expires_at?: boolean
     scope?: boolean
     installation_id?: boolean
-    installation_token?: boolean
-    installation_expires_at?: boolean
+    installation_token_expires_at?: boolean
     permissions?: boolean
     repository_selection?: boolean
     created_at?: boolean
@@ -2436,8 +2427,7 @@ export namespace Prisma {
     refresh_expires_at?: boolean
     scope?: boolean
     installation_id?: boolean
-    installation_token?: boolean
-    installation_expires_at?: boolean
+    installation_token_expires_at?: boolean
     permissions?: boolean
     repository_selection?: boolean
     created_at?: boolean
@@ -2458,15 +2448,14 @@ export namespace Prisma {
     refresh_expires_at?: boolean
     scope?: boolean
     installation_id?: boolean
-    installation_token?: boolean
-    installation_expires_at?: boolean
+    installation_token_expires_at?: boolean
     permissions?: boolean
     repository_selection?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type GithubAuthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "github_user_id" | "github_username" | "github_avatar_url" | "access_token" | "refresh_token" | "token_type" | "expires_at" | "refresh_expires_at" | "scope" | "installation_id" | "installation_token" | "installation_expires_at" | "permissions" | "repository_selection" | "created_at" | "updated_at", ExtArgs["result"]["githubAuth"]>
+  export type GithubAuthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "github_user_id" | "github_username" | "github_avatar_url" | "access_token" | "refresh_token" | "token_type" | "expires_at" | "refresh_expires_at" | "scope" | "installation_id" | "installation_token_expires_at" | "permissions" | "repository_selection" | "created_at" | "updated_at", ExtArgs["result"]["githubAuth"]>
   export type GithubAuthInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2495,8 +2484,7 @@ export namespace Prisma {
       refresh_expires_at: Date
       scope: string
       installation_id: string
-      installation_token: string
-      installation_expires_at: Date
+      installation_token_expires_at: Date
       permissions: Prisma.JsonValue
       repository_selection: $Enums.GithubAuthRepoSelection
       created_at: Date
@@ -2937,8 +2925,7 @@ export namespace Prisma {
     readonly refresh_expires_at: FieldRef<"GithubAuth", 'DateTime'>
     readonly scope: FieldRef<"GithubAuth", 'String'>
     readonly installation_id: FieldRef<"GithubAuth", 'String'>
-    readonly installation_token: FieldRef<"GithubAuth", 'String'>
-    readonly installation_expires_at: FieldRef<"GithubAuth", 'DateTime'>
+    readonly installation_token_expires_at: FieldRef<"GithubAuth", 'DateTime'>
     readonly permissions: FieldRef<"GithubAuth", 'Json'>
     readonly repository_selection: FieldRef<"GithubAuth", 'GithubAuthRepoSelection'>
     readonly created_at: FieldRef<"GithubAuth", 'DateTime'>
@@ -3397,8 +3384,7 @@ export namespace Prisma {
     refresh_expires_at: 'refresh_expires_at',
     scope: 'scope',
     installation_id: 'installation_id',
-    installation_token: 'installation_token',
-    installation_expires_at: 'installation_expires_at',
+    installation_token_expires_at: 'installation_token_expires_at',
     permissions: 'permissions',
     repository_selection: 'repository_selection',
     created_at: 'created_at',
@@ -3623,8 +3609,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     scope?: StringFilter<"GithubAuth"> | string
     installation_id?: StringFilter<"GithubAuth"> | string
-    installation_token?: StringFilter<"GithubAuth"> | string
-    installation_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    installation_token_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     permissions?: JsonFilter<"GithubAuth">
     repository_selection?: EnumGithubAuthRepoSelectionFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFilter<"GithubAuth"> | Date | string
@@ -3645,8 +3630,7 @@ export namespace Prisma {
     refresh_expires_at?: SortOrder
     scope?: SortOrder
     installation_id?: SortOrder
-    installation_token?: SortOrder
-    installation_expires_at?: SortOrder
+    installation_token_expires_at?: SortOrder
     permissions?: SortOrder
     repository_selection?: SortOrder
     created_at?: SortOrder
@@ -3670,8 +3654,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     scope?: StringFilter<"GithubAuth"> | string
     installation_id?: StringFilter<"GithubAuth"> | string
-    installation_token?: StringFilter<"GithubAuth"> | string
-    installation_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
+    installation_token_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     permissions?: JsonFilter<"GithubAuth">
     repository_selection?: EnumGithubAuthRepoSelectionFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFilter<"GithubAuth"> | Date | string
@@ -3692,8 +3675,7 @@ export namespace Prisma {
     refresh_expires_at?: SortOrder
     scope?: SortOrder
     installation_id?: SortOrder
-    installation_token?: SortOrder
-    installation_expires_at?: SortOrder
+    installation_token_expires_at?: SortOrder
     permissions?: SortOrder
     repository_selection?: SortOrder
     created_at?: SortOrder
@@ -3721,8 +3703,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
     scope?: StringWithAggregatesFilter<"GithubAuth"> | string
     installation_id?: StringWithAggregatesFilter<"GithubAuth"> | string
-    installation_token?: StringWithAggregatesFilter<"GithubAuth"> | string
-    installation_expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+    installation_token_expires_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
     permissions?: JsonWithAggregatesFilter<"GithubAuth">
     repository_selection?: EnumGithubAuthRepoSelectionWithAggregatesFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
@@ -3811,8 +3792,7 @@ export namespace Prisma {
     refresh_expires_at: Date | string
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date | string
+    installation_token_expires_at: Date | string
     permissions: JsonNullValueInput | InputJsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
@@ -3833,8 +3813,7 @@ export namespace Prisma {
     refresh_expires_at: Date | string
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date | string
+    installation_token_expires_at: Date | string
     permissions: JsonNullValueInput | InputJsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
@@ -3852,8 +3831,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3874,8 +3852,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3895,8 +3872,7 @@ export namespace Prisma {
     refresh_expires_at: Date | string
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date | string
+    installation_token_expires_at: Date | string
     permissions: JsonNullValueInput | InputJsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
@@ -3914,8 +3890,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3935,8 +3910,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4168,8 +4142,7 @@ export namespace Prisma {
     refresh_expires_at?: SortOrder
     scope?: SortOrder
     installation_id?: SortOrder
-    installation_token?: SortOrder
-    installation_expires_at?: SortOrder
+    installation_token_expires_at?: SortOrder
     permissions?: SortOrder
     repository_selection?: SortOrder
     created_at?: SortOrder
@@ -4195,8 +4168,7 @@ export namespace Prisma {
     refresh_expires_at?: SortOrder
     scope?: SortOrder
     installation_id?: SortOrder
-    installation_token?: SortOrder
-    installation_expires_at?: SortOrder
+    installation_token_expires_at?: SortOrder
     repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4215,8 +4187,7 @@ export namespace Prisma {
     refresh_expires_at?: SortOrder
     scope?: SortOrder
     installation_id?: SortOrder
-    installation_token?: SortOrder
-    installation_expires_at?: SortOrder
+    installation_token_expires_at?: SortOrder
     repository_selection?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4572,8 +4543,7 @@ export namespace Prisma {
     refresh_expires_at: Date | string
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date | string
+    installation_token_expires_at: Date | string
     permissions: JsonNullValueInput | InputJsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
@@ -4592,8 +4562,7 @@ export namespace Prisma {
     refresh_expires_at: Date | string
     scope: string
     installation_id: string
-    installation_token: string
-    installation_expires_at: Date | string
+    installation_token_expires_at: Date | string
     permissions: JsonNullValueInput | InputJsonValue
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
@@ -4627,8 +4596,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4647,8 +4615,7 @@ export namespace Prisma {
     refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     scope?: StringFieldUpdateOperationsInput | string
     installation_id?: StringFieldUpdateOperationsInput | string
-    installation_token?: StringFieldUpdateOperationsInput | string
-    installation_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -51,8 +51,7 @@ model GithubAuth {
 
   // --- App Installation ---
   installation_id        String
-  installation_token     String
-  installation_expires_at DateTime
+  installation_token_expires_at DateTime
   permissions            Json
   repository_selection   GithubAuthRepoSelection 
 
