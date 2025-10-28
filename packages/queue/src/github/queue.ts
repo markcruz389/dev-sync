@@ -2,9 +2,9 @@ import {
     Queue,
     // QueueScheduler,
 } from "bullmq";
-import { redisConnection } from "../_lib/redis.js";
-import type { GithubJobPayloads } from "../github/types.js";
+import type { GithubJobPayloads } from "./types.js";
 import type { JobsOptions } from "bullmq";
+import { redisConnection } from "../_lib/redis.js";
 
 // --- Queue and Scheduler ---
 export const githubQueue = new Queue("github", { connection: redisConnection });

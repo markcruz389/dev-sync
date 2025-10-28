@@ -12,10 +12,12 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@devsync/cache": "workspace:*",
         "@devsync/db": "workspace:*",
         "@devsync/queue": "workspace:*",
         "@devsync/utils": "workspace:*",
-        "@devsync/cache": "workspace:*",
+        "@octokit/auth-app": "^8.1.1",
+        "@octokit/oauth-app": "^8.0.3",
         "@octokit/rest": "^22.0.0",
         "bullmq": "^5.61.2",
         "ioredis": "^5.8.2"

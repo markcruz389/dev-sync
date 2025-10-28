@@ -31,6 +31,21 @@ enum GithubAuthRepoSelection {
   @@map("github_auth_repo_selection")
 }
 
+enum InstallationRepoOwnerType {
+  USER
+  ORGANIZATION
+
+  @@map("installation_repo_owner_type")
+}
+
+enum InstallationRepoVisibility {
+  PUBLIC
+  PRIVATE
+  INTERNAL
+
+  @@map("installation_repo_visibility")
+}
+
 model GithubAuth {
   id                     Int       @id @default(autoincrement())
 
@@ -50,7 +65,7 @@ model GithubAuth {
   scope                  String   // usually empty string
 
   // --- App Installation ---
-  installation_id        String
+  installation_id        String @unique
   installation_token_expires_at DateTime
   permissions            Json
   repository_selection   GithubAuthRepoSelection 
@@ -58,5 +73,41 @@ model GithubAuth {
   created_at             DateTime  @default(now()) @db.Timestamptz(3)
   updated_at             DateTime  @updatedAt @db.Timestamptz(3)
 
+  // Relation: one installation ↔ many repos
+  repos                      GithubInstallationRepos[]
+
   @@map("github_auth")
+}
+
+model GithubInstallationRepos {
+  // Composite PK keeps rows tiny and prevents duplicates per installation
+  installation_id String
+  repo_id         BigInt   @db.BigInt
+
+  // Tiny, useful fields only
+  full_name       String            // "owner/name" (UI + unique-ish handle)
+  name            String            // "name"
+  owner_username     String            // "owner"
+  owner_type      InstallationRepoOwnerType            // "User" | "Organization" (kept as String for simplicity)
+  visibility      InstallationRepoVisibility?         // "public" | "private" | "internal"
+  archived        Boolean  @default(false)
+  disabled        Boolean  @default(false)
+  default_branch  String?
+  html_url        String
+  language        String?
+
+  // Sync bookkeeping
+  fetched_at      DateTime @default(now()) @db.Timestamptz(3)
+  deleted_at      DateTime?                @db.Timestamptz(3)
+
+  created_at             DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at             DateTime  @updatedAt @db.Timestamptz(3)
+
+  // Relation back to GithubAuth via unique installation_id
+  githubAuth      GithubAuth @relation(fields: [installation_id], references: [installation_id], onDelete: Cascade)
+
+  @@id([installation_id, repo_id])
+  @@index([installation_id, full_name])
+  @@index([installation_id, owner_username])
+  @@map("github_installation_repos")
 }

@@ -1,9 +1,12 @@
 import type { UserGithubLinkedJob } from "@devsync/queue/github/types.js";
-import { prisma } from "@devsync/db";
-import { getOctokitForUser } from "../../_lib/octokit.js";
+import {
+    InstallationRepoOwnerType,
+    InstallationRepoVisibility,
+    prisma,
+} from "@devsync/db";
+import { getOctokitForUser, getOctokitForApp } from "../../_lib/octokit.js";
 import { logger } from "../../_utils/logger.js";
 import { refreshUserOauthToken, isAuthTokenExpired } from "./_utils.js";
-import { getGhInstallationAuth, getRedis } from "@devsync/cache";
 
 async function saveGithubProfileData({
     accessToken,
@@ -15,7 +18,7 @@ async function saveGithubProfileData({
     logger.info("Syncing GitHub profile data for user:", userId);
 
     const octokit = getOctokitForUser(accessToken);
-    const { data: ghUser } = await octokit.users.getAuthenticated();
+    const { data: ghUser } = await octokit.rest.users.getAuthenticated();
 
     await prisma.githubAuth.update({
         where: { user_id: userId },
@@ -27,6 +30,43 @@ async function saveGithubProfileData({
     });
 
     logger.info(`Successfully synced GitHub profile data for user ${userId}`);
+}
+
+async function saveGithubInstallationRepos(installationId: string) {
+    logger.info(
+        "Syncing GitHub installation repositories for installation:",
+        installationId
+    );
+
+    const octokitApp = getOctokitForApp(installationId);
+    const { data } = await octokitApp.request("GET /installation/repositories");
+
+    const createData = data.repositories.map((repo) => ({
+        installation_id: installationId,
+        repo_id: BigInt(repo.id),
+        full_name: repo.full_name,
+        name: repo.name,
+        owner_username: repo.owner.login,
+        owner_type: repo.owner.type.toUpperCase() as InstallationRepoOwnerType, // Uppercased to match enum
+        visibility:
+            (repo.visibility?.toUpperCase() as InstallationRepoVisibility) ??
+            null, // Uppercased to match enum
+        archived: repo.archived,
+        disabled: repo.disabled,
+        default_branch: repo.default_branch,
+        html_url: repo.html_url,
+        language: repo.language,
+        fetched_at: new Date(),
+        deleted_at: null,
+    }));
+
+    await prisma.githubInstallationRepos.createMany({
+        data: createData,
+    });
+
+    logger.info(
+        `Successfully synced GitHub installation repositories for installation: ${installationId}`
+    );
 }
 
 export async function userGithubLinked(data: UserGithubLinkedJob) {
@@ -61,19 +101,13 @@ export async function userGithubLinked(data: UserGithubLinkedJob) {
             accessToken = newToken;
         }
 
-        await saveGithubProfileData({
-            accessToken,
-            userId: user.id,
-        });
-
-        const redis = getRedis();
-        const installationToken = await getGhInstallationAuth({
-            redis,
-            installationId: user.githubAuth.installation_id,
-        });
-        console.log("installationToken", installationToken);
-
-        // TODO: Handle saving user's granted repositories
+        await Promise.all([
+            saveGithubProfileData({
+                accessToken,
+                userId: user.id,
+            }),
+            saveGithubInstallationRepos(user.githubAuth.installation_id),
+        ]);
 
         logger.info(`Completed Github linked job for user: ${userId}`);
     } catch (error) {

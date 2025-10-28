@@ -150,6 +150,25 @@ exports.Prisma.GithubAuthScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.GithubInstallationReposScalarFieldEnum = {
+  installation_id: 'installation_id',
+  repo_id: 'repo_id',
+  full_name: 'full_name',
+  name: 'name',
+  owner_username: 'owner_username',
+  owner_type: 'owner_type',
+  visibility: 'visibility',
+  archived: 'archived',
+  disabled: 'disabled',
+  default_branch: 'default_branch',
+  html_url: 'html_url',
+  language: 'language',
+  fetched_at: 'fetched_at',
+  deleted_at: 'deleted_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -179,9 +198,21 @@ exports.GithubAuthRepoSelection = exports.$Enums.GithubAuthRepoSelection = {
   SELECTED: 'SELECTED'
 };
 
+exports.InstallationRepoOwnerType = exports.$Enums.InstallationRepoOwnerType = {
+  USER: 'USER',
+  ORGANIZATION: 'ORGANIZATION'
+};
+
+exports.InstallationRepoVisibility = exports.$Enums.InstallationRepoVisibility = {
+  PUBLIC: 'PUBLIC',
+  PRIVATE: 'PRIVATE',
+  INTERNAL: 'INTERNAL'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  GithubAuth: 'GithubAuth'
+  GithubAuth: 'GithubAuth',
+  GithubInstallationRepos: 'GithubInstallationRepos'
 };
 
 /**

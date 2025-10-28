@@ -1,6 +1,8 @@
 // Central place for ALL cache key namespaces & builders.
 // No more magic strings across apps.
 
+// NOTE: This is not used right now. Retaining it for guidelines on how to structure cache keys.
+
 export const CACHE_KEYS = {
     ghInstallToken: "gh:install-token", // GitHub App installation token cache
 } as const;

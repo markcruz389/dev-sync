@@ -122,6 +122,25 @@ exports.Prisma.GithubAuthScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.GithubInstallationReposScalarFieldEnum = {
+  installation_id: 'installation_id',
+  repo_id: 'repo_id',
+  full_name: 'full_name',
+  name: 'name',
+  owner_username: 'owner_username',
+  owner_type: 'owner_type',
+  visibility: 'visibility',
+  archived: 'archived',
+  disabled: 'disabled',
+  default_branch: 'default_branch',
+  html_url: 'html_url',
+  language: 'language',
+  fetched_at: 'fetched_at',
+  deleted_at: 'deleted_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,9 +170,21 @@ exports.GithubAuthRepoSelection = exports.$Enums.GithubAuthRepoSelection = {
   SELECTED: 'SELECTED'
 };
 
+exports.InstallationRepoOwnerType = exports.$Enums.InstallationRepoOwnerType = {
+  USER: 'USER',
+  ORGANIZATION: 'ORGANIZATION'
+};
+
+exports.InstallationRepoVisibility = exports.$Enums.InstallationRepoVisibility = {
+  PUBLIC: 'PUBLIC',
+  PRIVATE: 'PRIVATE',
+  INTERNAL: 'INTERNAL'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  GithubAuth: 'GithubAuth'
+  GithubAuth: 'GithubAuth',
+  GithubInstallationRepos: 'GithubInstallationRepos'
 };
 /**
  * Create the Client
@@ -205,13 +236,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"linux-musl-arm64-openssl-3.0.x\"]\n  output        = \"../generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id         Int     @id @default(autoincrement())\n  auth_id    String  @unique\n  email      String  @unique\n  first_name String?\n  last_name  String?\n\n  githubAuth GithubAuth? @relation\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  @@map(\"users\")\n}\n\nenum GithubAuthRepoSelection {\n  ALL\n  SELECTED\n\n  @@map(\"github_auth_repo_selection\")\n}\n\nmodel GithubAuth {\n  id Int @id @default(autoincrement())\n\n  // --- Relation to your app user ---\n  user_id Int  @unique\n  user    User @relation(fields: [user_id], references: [id])\n\n  // --- User OAuth ---\n  github_user_id     Int? // --\n  github_username    String? // --\n  github_avatar_url  String? // These are optional since based on the auth flow used, this can only be added when github's /user endpoint is hit and that's done in the background process after installing the github app\n  access_token       String\n  refresh_token      String\n  token_type         String // usually \"bearer\"\n  expires_at         DateTime @db.Timestamptz(3)\n  refresh_expires_at DateTime @db.Timestamptz(3)\n  scope              String // usually empty string\n\n  // --- App Installation ---\n  installation_id               String\n  installation_token_expires_at DateTime\n  permissions                   Json\n  repository_selection          GithubAuthRepoSelection\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  @@map(\"github_auth\")\n}\n",
-  "inlineSchemaHash": "ad6247c777e47070f3532feffc94abb6e602f1e990ec638a98b2c8b7ab538c2c",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"linux-musl-arm64-openssl-3.0.x\"]\n  output        = \"../generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id         Int     @id @default(autoincrement())\n  auth_id    String  @unique\n  email      String  @unique\n  first_name String?\n  last_name  String?\n\n  githubAuth GithubAuth? @relation\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  @@map(\"users\")\n}\n\nenum GithubAuthRepoSelection {\n  ALL\n  SELECTED\n\n  @@map(\"github_auth_repo_selection\")\n}\n\nenum InstallationRepoOwnerType {\n  USER\n  ORGANIZATION\n\n  @@map(\"installation_repo_owner_type\")\n}\n\nenum InstallationRepoVisibility {\n  PUBLIC\n  PRIVATE\n  INTERNAL\n\n  @@map(\"installation_repo_visibility\")\n}\n\nmodel GithubAuth {\n  id Int @id @default(autoincrement())\n\n  // --- Relation to your app user ---\n  user_id Int  @unique\n  user    User @relation(fields: [user_id], references: [id])\n\n  // --- User OAuth ---\n  github_user_id     Int? // --\n  github_username    String? // --\n  github_avatar_url  String? // These are optional since based on the auth flow used, this can only be added when github's /user endpoint is hit and that's done in the background process after installing the github app\n  access_token       String\n  refresh_token      String\n  token_type         String // usually \"bearer\"\n  expires_at         DateTime @db.Timestamptz(3)\n  refresh_expires_at DateTime @db.Timestamptz(3)\n  scope              String // usually empty string\n\n  // --- App Installation ---\n  installation_id               String                  @unique\n  installation_token_expires_at DateTime\n  permissions                   Json\n  repository_selection          GithubAuthRepoSelection\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  // Relation: one installation ↔ many repos\n  repos GithubInstallationRepos[]\n\n  @@map(\"github_auth\")\n}\n\nmodel GithubInstallationRepos {\n  // Composite PK keeps rows tiny and prevents duplicates per installation\n  installation_id String\n  repo_id         BigInt @db.BigInt\n\n  // Tiny, useful fields only\n  full_name      String // \"owner/name\" (UI + unique-ish handle)\n  name           String // \"name\"\n  owner_username String // \"owner\"\n  owner_type     InstallationRepoOwnerType // \"User\" | \"Organization\" (kept as String for simplicity)\n  visibility     InstallationRepoVisibility? // \"public\" | \"private\" | \"internal\"\n  archived       Boolean                     @default(false)\n  disabled       Boolean                     @default(false)\n  default_branch String?\n  html_url       String\n  language       String?\n\n  // Sync bookkeeping\n  fetched_at DateTime  @default(now()) @db.Timestamptz(3)\n  deleted_at DateTime? @db.Timestamptz(3)\n\n  created_at DateTime @default(now()) @db.Timestamptz(3)\n  updated_at DateTime @updatedAt @db.Timestamptz(3)\n\n  // Relation back to GithubAuth via unique installation_id\n  githubAuth GithubAuth @relation(fields: [installation_id], references: [installation_id], onDelete: Cascade)\n\n  @@id([installation_id, repo_id])\n  @@index([installation_id, full_name])\n  @@index([installation_id, owner_username])\n  @@map(\"github_installation_repos\")\n}\n",
+  "inlineSchemaHash": "ca3c004da36af85b8d1a4fab747c653902520456520b626dcd767f5d47b59459",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"auth_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"githubAuth\",\"kind\":\"object\",\"type\":\"GithubAuth\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"users\"},\"GithubAuth\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"github_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"github_username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"github_avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refresh_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_token_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"permissions\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"repository_selection\",\"kind\":\"enum\",\"type\":\"GithubAuthRepoSelection\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"github_auth\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"auth_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"githubAuth\",\"kind\":\"object\",\"type\":\"GithubAuth\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"users\"},\"GithubAuth\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"GithubAuthToUser\"},{\"name\":\"github_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"github_username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"github_avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refresh_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refresh_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"installation_token_expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"permissions\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"repository_selection\",\"kind\":\"enum\",\"type\":\"GithubAuthRepoSelection\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"repos\",\"kind\":\"object\",\"type\":\"GithubInstallationRepos\",\"relationName\":\"GithubAuthToGithubInstallationRepos\"}],\"dbName\":\"github_auth\"},\"GithubInstallationRepos\":{\"fields\":[{\"name\":\"installation_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"repo_id\",\"kind\":\"scalar\",\"type\":\"BigInt\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"owner_username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"owner_type\",\"kind\":\"enum\",\"type\":\"InstallationRepoOwnerType\"},{\"name\":\"visibility\",\"kind\":\"enum\",\"type\":\"InstallationRepoVisibility\"},{\"name\":\"archived\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"disabled\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"default_branch\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"html_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"language\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fetched_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deleted_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"githubAuth\",\"kind\":\"object\",\"type\":\"GithubAuth\",\"relationName\":\"GithubAuthToGithubInstallationRepos\"}],\"dbName\":\"github_installation_repos\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

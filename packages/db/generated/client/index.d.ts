@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type GithubAuth = $Result.DefaultSelection<Prisma.$GithubAuthPayload>
+/**
+ * Model GithubInstallationRepos
+ * 
+ */
+export type GithubInstallationRepos = $Result.DefaultSelection<Prisma.$GithubInstallationReposPayload>
 
 /**
  * Enums
@@ -35,11 +40,36 @@ export namespace $Enums {
 
 export type GithubAuthRepoSelection = (typeof GithubAuthRepoSelection)[keyof typeof GithubAuthRepoSelection]
 
+
+export const InstallationRepoOwnerType: {
+  USER: 'USER',
+  ORGANIZATION: 'ORGANIZATION'
+};
+
+export type InstallationRepoOwnerType = (typeof InstallationRepoOwnerType)[keyof typeof InstallationRepoOwnerType]
+
+
+export const InstallationRepoVisibility: {
+  PUBLIC: 'PUBLIC',
+  PRIVATE: 'PRIVATE',
+  INTERNAL: 'INTERNAL'
+};
+
+export type InstallationRepoVisibility = (typeof InstallationRepoVisibility)[keyof typeof InstallationRepoVisibility]
+
 }
 
 export type GithubAuthRepoSelection = $Enums.GithubAuthRepoSelection
 
 export const GithubAuthRepoSelection: typeof $Enums.GithubAuthRepoSelection
+
+export type InstallationRepoOwnerType = $Enums.InstallationRepoOwnerType
+
+export const InstallationRepoOwnerType: typeof $Enums.InstallationRepoOwnerType
+
+export type InstallationRepoVisibility = $Enums.InstallationRepoVisibility
+
+export const InstallationRepoVisibility: typeof $Enums.InstallationRepoVisibility
 
 /**
  * ##  Prisma Client ʲˢ
@@ -178,6 +208,16 @@ export class PrismaClient<
     * ```
     */
   get githubAuth(): Prisma.GithubAuthDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.githubInstallationRepos`: Exposes CRUD operations for the **GithubInstallationRepos** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GithubInstallationRepos
+    * const githubInstallationRepos = await prisma.githubInstallationRepos.findMany()
+    * ```
+    */
+  get githubInstallationRepos(): Prisma.GithubInstallationReposDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -620,7 +660,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    GithubAuth: 'GithubAuth'
+    GithubAuth: 'GithubAuth',
+    GithubInstallationRepos: 'GithubInstallationRepos'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -639,7 +680,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "githubAuth"
+      modelProps: "user" | "githubAuth" | "githubInstallationRepos"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -791,6 +832,80 @@ export namespace Prisma {
           }
         }
       }
+      GithubInstallationRepos: {
+        payload: Prisma.$GithubInstallationReposPayload<ExtArgs>
+        fields: Prisma.GithubInstallationReposFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GithubInstallationReposFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GithubInstallationReposFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          findFirst: {
+            args: Prisma.GithubInstallationReposFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GithubInstallationReposFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          findMany: {
+            args: Prisma.GithubInstallationReposFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>[]
+          }
+          create: {
+            args: Prisma.GithubInstallationReposCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          createMany: {
+            args: Prisma.GithubInstallationReposCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GithubInstallationReposCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>[]
+          }
+          delete: {
+            args: Prisma.GithubInstallationReposDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          update: {
+            args: Prisma.GithubInstallationReposUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          deleteMany: {
+            args: Prisma.GithubInstallationReposDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GithubInstallationReposUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GithubInstallationReposUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>[]
+          }
+          upsert: {
+            args: Prisma.GithubInstallationReposUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GithubInstallationReposPayload>
+          }
+          aggregate: {
+            args: Prisma.GithubInstallationReposAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGithubInstallationRepos>
+          }
+          groupBy: {
+            args: Prisma.GithubInstallationReposGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GithubInstallationReposGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GithubInstallationReposCountArgs<ExtArgs>
+            result: $Utils.Optional<GithubInstallationReposCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -889,6 +1004,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     githubAuth?: GithubAuthOmit
+    githubInstallationRepos?: GithubInstallationReposOmit
   }
 
   /* Types for Logging */
@@ -963,6 +1079,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type GithubAuthCountOutputType
+   */
+
+  export type GithubAuthCountOutputType = {
+    repos: number
+  }
+
+  export type GithubAuthCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repos?: boolean | GithubAuthCountOutputTypeCountReposArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GithubAuthCountOutputType without action
+   */
+  export type GithubAuthCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubAuthCountOutputType
+     */
+    select?: GithubAuthCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GithubAuthCountOutputType without action
+   */
+  export type GithubAuthCountOutputTypeCountReposArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GithubInstallationReposWhereInput
+  }
 
 
   /**
@@ -2391,6 +2537,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    repos?: boolean | GithubAuth$reposArgs<ExtArgs>
+    _count?: boolean | GithubAuthCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["githubAuth"]>
 
   export type GithubAuthSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2458,6 +2606,8 @@ export namespace Prisma {
   export type GithubAuthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "github_user_id" | "github_username" | "github_avatar_url" | "access_token" | "refresh_token" | "token_type" | "expires_at" | "refresh_expires_at" | "scope" | "installation_id" | "installation_token_expires_at" | "permissions" | "repository_selection" | "created_at" | "updated_at", ExtArgs["result"]["githubAuth"]>
   export type GithubAuthInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    repos?: boolean | GithubAuth$reposArgs<ExtArgs>
+    _count?: boolean | GithubAuthCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GithubAuthIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2470,6 +2620,7 @@ export namespace Prisma {
     name: "GithubAuth"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      repos: Prisma.$GithubInstallationReposPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2884,6 +3035,7 @@ export namespace Prisma {
   export interface Prisma__GithubAuthClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repos<T extends GithubAuth$reposArgs<ExtArgs> = {}>(args?: Subset<T, GithubAuth$reposArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3326,6 +3478,30 @@ export namespace Prisma {
   }
 
   /**
+   * GithubAuth.repos
+   */
+  export type GithubAuth$reposArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    where?: GithubInstallationReposWhereInput
+    orderBy?: GithubInstallationReposOrderByWithRelationInput | GithubInstallationReposOrderByWithRelationInput[]
+    cursor?: GithubInstallationReposWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GithubInstallationReposScalarFieldEnum | GithubInstallationReposScalarFieldEnum[]
+  }
+
+  /**
    * GithubAuth without action
    */
   export type GithubAuthDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3341,6 +3517,1241 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: GithubAuthInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GithubInstallationRepos
+   */
+
+  export type AggregateGithubInstallationRepos = {
+    _count: GithubInstallationReposCountAggregateOutputType | null
+    _avg: GithubInstallationReposAvgAggregateOutputType | null
+    _sum: GithubInstallationReposSumAggregateOutputType | null
+    _min: GithubInstallationReposMinAggregateOutputType | null
+    _max: GithubInstallationReposMaxAggregateOutputType | null
+  }
+
+  export type GithubInstallationReposAvgAggregateOutputType = {
+    repo_id: number | null
+  }
+
+  export type GithubInstallationReposSumAggregateOutputType = {
+    repo_id: bigint | null
+  }
+
+  export type GithubInstallationReposMinAggregateOutputType = {
+    installation_id: string | null
+    repo_id: bigint | null
+    full_name: string | null
+    name: string | null
+    owner_username: string | null
+    owner_type: $Enums.InstallationRepoOwnerType | null
+    visibility: $Enums.InstallationRepoVisibility | null
+    archived: boolean | null
+    disabled: boolean | null
+    default_branch: string | null
+    html_url: string | null
+    language: string | null
+    fetched_at: Date | null
+    deleted_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type GithubInstallationReposMaxAggregateOutputType = {
+    installation_id: string | null
+    repo_id: bigint | null
+    full_name: string | null
+    name: string | null
+    owner_username: string | null
+    owner_type: $Enums.InstallationRepoOwnerType | null
+    visibility: $Enums.InstallationRepoVisibility | null
+    archived: boolean | null
+    disabled: boolean | null
+    default_branch: string | null
+    html_url: string | null
+    language: string | null
+    fetched_at: Date | null
+    deleted_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type GithubInstallationReposCountAggregateOutputType = {
+    installation_id: number
+    repo_id: number
+    full_name: number
+    name: number
+    owner_username: number
+    owner_type: number
+    visibility: number
+    archived: number
+    disabled: number
+    default_branch: number
+    html_url: number
+    language: number
+    fetched_at: number
+    deleted_at: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type GithubInstallationReposAvgAggregateInputType = {
+    repo_id?: true
+  }
+
+  export type GithubInstallationReposSumAggregateInputType = {
+    repo_id?: true
+  }
+
+  export type GithubInstallationReposMinAggregateInputType = {
+    installation_id?: true
+    repo_id?: true
+    full_name?: true
+    name?: true
+    owner_username?: true
+    owner_type?: true
+    visibility?: true
+    archived?: true
+    disabled?: true
+    default_branch?: true
+    html_url?: true
+    language?: true
+    fetched_at?: true
+    deleted_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type GithubInstallationReposMaxAggregateInputType = {
+    installation_id?: true
+    repo_id?: true
+    full_name?: true
+    name?: true
+    owner_username?: true
+    owner_type?: true
+    visibility?: true
+    archived?: true
+    disabled?: true
+    default_branch?: true
+    html_url?: true
+    language?: true
+    fetched_at?: true
+    deleted_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type GithubInstallationReposCountAggregateInputType = {
+    installation_id?: true
+    repo_id?: true
+    full_name?: true
+    name?: true
+    owner_username?: true
+    owner_type?: true
+    visibility?: true
+    archived?: true
+    disabled?: true
+    default_branch?: true
+    html_url?: true
+    language?: true
+    fetched_at?: true
+    deleted_at?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type GithubInstallationReposAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GithubInstallationRepos to aggregate.
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GithubInstallationRepos to fetch.
+     */
+    orderBy?: GithubInstallationReposOrderByWithRelationInput | GithubInstallationReposOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GithubInstallationReposWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GithubInstallationRepos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GithubInstallationRepos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GithubInstallationRepos
+    **/
+    _count?: true | GithubInstallationReposCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GithubInstallationReposAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GithubInstallationReposSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GithubInstallationReposMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GithubInstallationReposMaxAggregateInputType
+  }
+
+  export type GetGithubInstallationReposAggregateType<T extends GithubInstallationReposAggregateArgs> = {
+        [P in keyof T & keyof AggregateGithubInstallationRepos]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGithubInstallationRepos[P]>
+      : GetScalarType<T[P], AggregateGithubInstallationRepos[P]>
+  }
+
+
+
+
+  export type GithubInstallationReposGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GithubInstallationReposWhereInput
+    orderBy?: GithubInstallationReposOrderByWithAggregationInput | GithubInstallationReposOrderByWithAggregationInput[]
+    by: GithubInstallationReposScalarFieldEnum[] | GithubInstallationReposScalarFieldEnum
+    having?: GithubInstallationReposScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GithubInstallationReposCountAggregateInputType | true
+    _avg?: GithubInstallationReposAvgAggregateInputType
+    _sum?: GithubInstallationReposSumAggregateInputType
+    _min?: GithubInstallationReposMinAggregateInputType
+    _max?: GithubInstallationReposMaxAggregateInputType
+  }
+
+  export type GithubInstallationReposGroupByOutputType = {
+    installation_id: string
+    repo_id: bigint
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility: $Enums.InstallationRepoVisibility | null
+    archived: boolean
+    disabled: boolean
+    default_branch: string | null
+    html_url: string
+    language: string | null
+    fetched_at: Date
+    deleted_at: Date | null
+    created_at: Date
+    updated_at: Date
+    _count: GithubInstallationReposCountAggregateOutputType | null
+    _avg: GithubInstallationReposAvgAggregateOutputType | null
+    _sum: GithubInstallationReposSumAggregateOutputType | null
+    _min: GithubInstallationReposMinAggregateOutputType | null
+    _max: GithubInstallationReposMaxAggregateOutputType | null
+  }
+
+  type GetGithubInstallationReposGroupByPayload<T extends GithubInstallationReposGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GithubInstallationReposGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GithubInstallationReposGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GithubInstallationReposGroupByOutputType[P]>
+            : GetScalarType<T[P], GithubInstallationReposGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GithubInstallationReposSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    installation_id?: boolean
+    repo_id?: boolean
+    full_name?: boolean
+    name?: boolean
+    owner_username?: boolean
+    owner_type?: boolean
+    visibility?: boolean
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: boolean
+    html_url?: boolean
+    language?: boolean
+    fetched_at?: boolean
+    deleted_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["githubInstallationRepos"]>
+
+  export type GithubInstallationReposSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    installation_id?: boolean
+    repo_id?: boolean
+    full_name?: boolean
+    name?: boolean
+    owner_username?: boolean
+    owner_type?: boolean
+    visibility?: boolean
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: boolean
+    html_url?: boolean
+    language?: boolean
+    fetched_at?: boolean
+    deleted_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["githubInstallationRepos"]>
+
+  export type GithubInstallationReposSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    installation_id?: boolean
+    repo_id?: boolean
+    full_name?: boolean
+    name?: boolean
+    owner_username?: boolean
+    owner_type?: boolean
+    visibility?: boolean
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: boolean
+    html_url?: boolean
+    language?: boolean
+    fetched_at?: boolean
+    deleted_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["githubInstallationRepos"]>
+
+  export type GithubInstallationReposSelectScalar = {
+    installation_id?: boolean
+    repo_id?: boolean
+    full_name?: boolean
+    name?: boolean
+    owner_username?: boolean
+    owner_type?: boolean
+    visibility?: boolean
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: boolean
+    html_url?: boolean
+    language?: boolean
+    fetched_at?: boolean
+    deleted_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type GithubInstallationReposOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"installation_id" | "repo_id" | "full_name" | "name" | "owner_username" | "owner_type" | "visibility" | "archived" | "disabled" | "default_branch" | "html_url" | "language" | "fetched_at" | "deleted_at" | "created_at" | "updated_at", ExtArgs["result"]["githubInstallationRepos"]>
+  export type GithubInstallationReposInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }
+  export type GithubInstallationReposIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }
+  export type GithubInstallationReposIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    githubAuth?: boolean | GithubAuthDefaultArgs<ExtArgs>
+  }
+
+  export type $GithubInstallationReposPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GithubInstallationRepos"
+    objects: {
+      githubAuth: Prisma.$GithubAuthPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      installation_id: string
+      repo_id: bigint
+      full_name: string
+      name: string
+      owner_username: string
+      owner_type: $Enums.InstallationRepoOwnerType
+      visibility: $Enums.InstallationRepoVisibility | null
+      archived: boolean
+      disabled: boolean
+      default_branch: string | null
+      html_url: string
+      language: string | null
+      fetched_at: Date
+      deleted_at: Date | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["githubInstallationRepos"]>
+    composites: {}
+  }
+
+  type GithubInstallationReposGetPayload<S extends boolean | null | undefined | GithubInstallationReposDefaultArgs> = $Result.GetResult<Prisma.$GithubInstallationReposPayload, S>
+
+  type GithubInstallationReposCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GithubInstallationReposFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GithubInstallationReposCountAggregateInputType | true
+    }
+
+  export interface GithubInstallationReposDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GithubInstallationRepos'], meta: { name: 'GithubInstallationRepos' } }
+    /**
+     * Find zero or one GithubInstallationRepos that matches the filter.
+     * @param {GithubInstallationReposFindUniqueArgs} args - Arguments to find a GithubInstallationRepos
+     * @example
+     * // Get one GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GithubInstallationReposFindUniqueArgs>(args: SelectSubset<T, GithubInstallationReposFindUniqueArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GithubInstallationRepos that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GithubInstallationReposFindUniqueOrThrowArgs} args - Arguments to find a GithubInstallationRepos
+     * @example
+     * // Get one GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GithubInstallationReposFindUniqueOrThrowArgs>(args: SelectSubset<T, GithubInstallationReposFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GithubInstallationRepos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposFindFirstArgs} args - Arguments to find a GithubInstallationRepos
+     * @example
+     * // Get one GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GithubInstallationReposFindFirstArgs>(args?: SelectSubset<T, GithubInstallationReposFindFirstArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GithubInstallationRepos that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposFindFirstOrThrowArgs} args - Arguments to find a GithubInstallationRepos
+     * @example
+     * // Get one GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GithubInstallationReposFindFirstOrThrowArgs>(args?: SelectSubset<T, GithubInstallationReposFindFirstOrThrowArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GithubInstallationRepos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findMany()
+     * 
+     * // Get first 10 GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.findMany({ take: 10 })
+     * 
+     * // Only select the `installation_id`
+     * const githubInstallationReposWithInstallation_idOnly = await prisma.githubInstallationRepos.findMany({ select: { installation_id: true } })
+     * 
+     */
+    findMany<T extends GithubInstallationReposFindManyArgs>(args?: SelectSubset<T, GithubInstallationReposFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GithubInstallationRepos.
+     * @param {GithubInstallationReposCreateArgs} args - Arguments to create a GithubInstallationRepos.
+     * @example
+     * // Create one GithubInstallationRepos
+     * const GithubInstallationRepos = await prisma.githubInstallationRepos.create({
+     *   data: {
+     *     // ... data to create a GithubInstallationRepos
+     *   }
+     * })
+     * 
+     */
+    create<T extends GithubInstallationReposCreateArgs>(args: SelectSubset<T, GithubInstallationReposCreateArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GithubInstallationRepos.
+     * @param {GithubInstallationReposCreateManyArgs} args - Arguments to create many GithubInstallationRepos.
+     * @example
+     * // Create many GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GithubInstallationReposCreateManyArgs>(args?: SelectSubset<T, GithubInstallationReposCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GithubInstallationRepos and returns the data saved in the database.
+     * @param {GithubInstallationReposCreateManyAndReturnArgs} args - Arguments to create many GithubInstallationRepos.
+     * @example
+     * // Create many GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GithubInstallationRepos and only return the `installation_id`
+     * const githubInstallationReposWithInstallation_idOnly = await prisma.githubInstallationRepos.createManyAndReturn({
+     *   select: { installation_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GithubInstallationReposCreateManyAndReturnArgs>(args?: SelectSubset<T, GithubInstallationReposCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GithubInstallationRepos.
+     * @param {GithubInstallationReposDeleteArgs} args - Arguments to delete one GithubInstallationRepos.
+     * @example
+     * // Delete one GithubInstallationRepos
+     * const GithubInstallationRepos = await prisma.githubInstallationRepos.delete({
+     *   where: {
+     *     // ... filter to delete one GithubInstallationRepos
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GithubInstallationReposDeleteArgs>(args: SelectSubset<T, GithubInstallationReposDeleteArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GithubInstallationRepos.
+     * @param {GithubInstallationReposUpdateArgs} args - Arguments to update one GithubInstallationRepos.
+     * @example
+     * // Update one GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GithubInstallationReposUpdateArgs>(args: SelectSubset<T, GithubInstallationReposUpdateArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GithubInstallationRepos.
+     * @param {GithubInstallationReposDeleteManyArgs} args - Arguments to filter GithubInstallationRepos to delete.
+     * @example
+     * // Delete a few GithubInstallationRepos
+     * const { count } = await prisma.githubInstallationRepos.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GithubInstallationReposDeleteManyArgs>(args?: SelectSubset<T, GithubInstallationReposDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GithubInstallationRepos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GithubInstallationReposUpdateManyArgs>(args: SelectSubset<T, GithubInstallationReposUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GithubInstallationRepos and returns the data updated in the database.
+     * @param {GithubInstallationReposUpdateManyAndReturnArgs} args - Arguments to update many GithubInstallationRepos.
+     * @example
+     * // Update many GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GithubInstallationRepos and only return the `installation_id`
+     * const githubInstallationReposWithInstallation_idOnly = await prisma.githubInstallationRepos.updateManyAndReturn({
+     *   select: { installation_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GithubInstallationReposUpdateManyAndReturnArgs>(args: SelectSubset<T, GithubInstallationReposUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GithubInstallationRepos.
+     * @param {GithubInstallationReposUpsertArgs} args - Arguments to update or create a GithubInstallationRepos.
+     * @example
+     * // Update or create a GithubInstallationRepos
+     * const githubInstallationRepos = await prisma.githubInstallationRepos.upsert({
+     *   create: {
+     *     // ... data to create a GithubInstallationRepos
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GithubInstallationRepos we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GithubInstallationReposUpsertArgs>(args: SelectSubset<T, GithubInstallationReposUpsertArgs<ExtArgs>>): Prisma__GithubInstallationReposClient<$Result.GetResult<Prisma.$GithubInstallationReposPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GithubInstallationRepos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposCountArgs} args - Arguments to filter GithubInstallationRepos to count.
+     * @example
+     * // Count the number of GithubInstallationRepos
+     * const count = await prisma.githubInstallationRepos.count({
+     *   where: {
+     *     // ... the filter for the GithubInstallationRepos we want to count
+     *   }
+     * })
+    **/
+    count<T extends GithubInstallationReposCountArgs>(
+      args?: Subset<T, GithubInstallationReposCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GithubInstallationReposCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GithubInstallationRepos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GithubInstallationReposAggregateArgs>(args: Subset<T, GithubInstallationReposAggregateArgs>): Prisma.PrismaPromise<GetGithubInstallationReposAggregateType<T>>
+
+    /**
+     * Group by GithubInstallationRepos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GithubInstallationReposGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GithubInstallationReposGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GithubInstallationReposGroupByArgs['orderBy'] }
+        : { orderBy?: GithubInstallationReposGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GithubInstallationReposGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGithubInstallationReposGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GithubInstallationRepos model
+   */
+  readonly fields: GithubInstallationReposFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GithubInstallationRepos.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GithubInstallationReposClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    githubAuth<T extends GithubAuthDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GithubAuthDefaultArgs<ExtArgs>>): Prisma__GithubAuthClient<$Result.GetResult<Prisma.$GithubAuthPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GithubInstallationRepos model
+   */
+  interface GithubInstallationReposFieldRefs {
+    readonly installation_id: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly repo_id: FieldRef<"GithubInstallationRepos", 'BigInt'>
+    readonly full_name: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly name: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly owner_username: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly owner_type: FieldRef<"GithubInstallationRepos", 'InstallationRepoOwnerType'>
+    readonly visibility: FieldRef<"GithubInstallationRepos", 'InstallationRepoVisibility'>
+    readonly archived: FieldRef<"GithubInstallationRepos", 'Boolean'>
+    readonly disabled: FieldRef<"GithubInstallationRepos", 'Boolean'>
+    readonly default_branch: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly html_url: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly language: FieldRef<"GithubInstallationRepos", 'String'>
+    readonly fetched_at: FieldRef<"GithubInstallationRepos", 'DateTime'>
+    readonly deleted_at: FieldRef<"GithubInstallationRepos", 'DateTime'>
+    readonly created_at: FieldRef<"GithubInstallationRepos", 'DateTime'>
+    readonly updated_at: FieldRef<"GithubInstallationRepos", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GithubInstallationRepos findUnique
+   */
+  export type GithubInstallationReposFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter, which GithubInstallationRepos to fetch.
+     */
+    where: GithubInstallationReposWhereUniqueInput
+  }
+
+  /**
+   * GithubInstallationRepos findUniqueOrThrow
+   */
+  export type GithubInstallationReposFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter, which GithubInstallationRepos to fetch.
+     */
+    where: GithubInstallationReposWhereUniqueInput
+  }
+
+  /**
+   * GithubInstallationRepos findFirst
+   */
+  export type GithubInstallationReposFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter, which GithubInstallationRepos to fetch.
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GithubInstallationRepos to fetch.
+     */
+    orderBy?: GithubInstallationReposOrderByWithRelationInput | GithubInstallationReposOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GithubInstallationRepos.
+     */
+    cursor?: GithubInstallationReposWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GithubInstallationRepos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GithubInstallationRepos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GithubInstallationRepos.
+     */
+    distinct?: GithubInstallationReposScalarFieldEnum | GithubInstallationReposScalarFieldEnum[]
+  }
+
+  /**
+   * GithubInstallationRepos findFirstOrThrow
+   */
+  export type GithubInstallationReposFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter, which GithubInstallationRepos to fetch.
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GithubInstallationRepos to fetch.
+     */
+    orderBy?: GithubInstallationReposOrderByWithRelationInput | GithubInstallationReposOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GithubInstallationRepos.
+     */
+    cursor?: GithubInstallationReposWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GithubInstallationRepos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GithubInstallationRepos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GithubInstallationRepos.
+     */
+    distinct?: GithubInstallationReposScalarFieldEnum | GithubInstallationReposScalarFieldEnum[]
+  }
+
+  /**
+   * GithubInstallationRepos findMany
+   */
+  export type GithubInstallationReposFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter, which GithubInstallationRepos to fetch.
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GithubInstallationRepos to fetch.
+     */
+    orderBy?: GithubInstallationReposOrderByWithRelationInput | GithubInstallationReposOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GithubInstallationRepos.
+     */
+    cursor?: GithubInstallationReposWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GithubInstallationRepos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GithubInstallationRepos.
+     */
+    skip?: number
+    distinct?: GithubInstallationReposScalarFieldEnum | GithubInstallationReposScalarFieldEnum[]
+  }
+
+  /**
+   * GithubInstallationRepos create
+   */
+  export type GithubInstallationReposCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GithubInstallationRepos.
+     */
+    data: XOR<GithubInstallationReposCreateInput, GithubInstallationReposUncheckedCreateInput>
+  }
+
+  /**
+   * GithubInstallationRepos createMany
+   */
+  export type GithubInstallationReposCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GithubInstallationRepos.
+     */
+    data: GithubInstallationReposCreateManyInput | GithubInstallationReposCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GithubInstallationRepos createManyAndReturn
+   */
+  export type GithubInstallationReposCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * The data used to create many GithubInstallationRepos.
+     */
+    data: GithubInstallationReposCreateManyInput | GithubInstallationReposCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GithubInstallationRepos update
+   */
+  export type GithubInstallationReposUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GithubInstallationRepos.
+     */
+    data: XOR<GithubInstallationReposUpdateInput, GithubInstallationReposUncheckedUpdateInput>
+    /**
+     * Choose, which GithubInstallationRepos to update.
+     */
+    where: GithubInstallationReposWhereUniqueInput
+  }
+
+  /**
+   * GithubInstallationRepos updateMany
+   */
+  export type GithubInstallationReposUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GithubInstallationRepos.
+     */
+    data: XOR<GithubInstallationReposUpdateManyMutationInput, GithubInstallationReposUncheckedUpdateManyInput>
+    /**
+     * Filter which GithubInstallationRepos to update
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * Limit how many GithubInstallationRepos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GithubInstallationRepos updateManyAndReturn
+   */
+  export type GithubInstallationReposUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * The data used to update GithubInstallationRepos.
+     */
+    data: XOR<GithubInstallationReposUpdateManyMutationInput, GithubInstallationReposUncheckedUpdateManyInput>
+    /**
+     * Filter which GithubInstallationRepos to update
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * Limit how many GithubInstallationRepos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GithubInstallationRepos upsert
+   */
+  export type GithubInstallationReposUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GithubInstallationRepos to update in case it exists.
+     */
+    where: GithubInstallationReposWhereUniqueInput
+    /**
+     * In case the GithubInstallationRepos found by the `where` argument doesn't exist, create a new GithubInstallationRepos with this data.
+     */
+    create: XOR<GithubInstallationReposCreateInput, GithubInstallationReposUncheckedCreateInput>
+    /**
+     * In case the GithubInstallationRepos was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GithubInstallationReposUpdateInput, GithubInstallationReposUncheckedUpdateInput>
+  }
+
+  /**
+   * GithubInstallationRepos delete
+   */
+  export type GithubInstallationReposDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
+    /**
+     * Filter which GithubInstallationRepos to delete.
+     */
+    where: GithubInstallationReposWhereUniqueInput
+  }
+
+  /**
+   * GithubInstallationRepos deleteMany
+   */
+  export type GithubInstallationReposDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GithubInstallationRepos to delete
+     */
+    where?: GithubInstallationReposWhereInput
+    /**
+     * Limit how many GithubInstallationRepos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GithubInstallationRepos without action
+   */
+  export type GithubInstallationReposDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GithubInstallationRepos
+     */
+    select?: GithubInstallationReposSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GithubInstallationRepos
+     */
+    omit?: GithubInstallationReposOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GithubInstallationReposInclude<ExtArgs> | null
   }
 
 
@@ -3392,6 +4803,28 @@ export namespace Prisma {
   };
 
   export type GithubAuthScalarFieldEnum = (typeof GithubAuthScalarFieldEnum)[keyof typeof GithubAuthScalarFieldEnum]
+
+
+  export const GithubInstallationReposScalarFieldEnum: {
+    installation_id: 'installation_id',
+    repo_id: 'repo_id',
+    full_name: 'full_name',
+    name: 'name',
+    owner_username: 'owner_username',
+    owner_type: 'owner_type',
+    visibility: 'visibility',
+    archived: 'archived',
+    disabled: 'disabled',
+    default_branch: 'default_branch',
+    html_url: 'html_url',
+    language: 'language',
+    fetched_at: 'fetched_at',
+    deleted_at: 'deleted_at',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type GithubInstallationReposScalarFieldEnum = (typeof GithubInstallationReposScalarFieldEnum)[keyof typeof GithubInstallationReposScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3510,6 +4943,55 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'InstallationRepoOwnerType'
+   */
+  export type EnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstallationRepoOwnerType'>
+    
+
+
+  /**
+   * Reference to a field of type 'InstallationRepoOwnerType[]'
+   */
+  export type ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstallationRepoOwnerType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'InstallationRepoVisibility'
+   */
+  export type EnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstallationRepoVisibility'>
+    
+
+
+  /**
+   * Reference to a field of type 'InstallationRepoVisibility[]'
+   */
+  export type ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstallationRepoVisibility[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -3615,6 +5097,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"GithubAuth"> | Date | string
     updated_at?: DateTimeFilter<"GithubAuth"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repos?: GithubInstallationReposListRelationFilter
   }
 
   export type GithubAuthOrderByWithRelationInput = {
@@ -3636,11 +5119,13 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     user?: UserOrderByWithRelationInput
+    repos?: GithubInstallationReposOrderByRelationAggregateInput
   }
 
   export type GithubAuthWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     user_id?: number
+    installation_id?: string
     AND?: GithubAuthWhereInput | GithubAuthWhereInput[]
     OR?: GithubAuthWhereInput[]
     NOT?: GithubAuthWhereInput | GithubAuthWhereInput[]
@@ -3653,14 +5138,14 @@ export namespace Prisma {
     expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     refresh_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     scope?: StringFilter<"GithubAuth"> | string
-    installation_id?: StringFilter<"GithubAuth"> | string
     installation_token_expires_at?: DateTimeFilter<"GithubAuth"> | Date | string
     permissions?: JsonFilter<"GithubAuth">
     repository_selection?: EnumGithubAuthRepoSelectionFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFilter<"GithubAuth"> | Date | string
     updated_at?: DateTimeFilter<"GithubAuth"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "user_id">
+    repos?: GithubInstallationReposListRelationFilter
+  }, "id" | "user_id" | "installation_id">
 
   export type GithubAuthOrderByWithAggregationInput = {
     id?: SortOrder
@@ -3708,6 +5193,119 @@ export namespace Prisma {
     repository_selection?: EnumGithubAuthRepoSelectionWithAggregatesFilter<"GithubAuth"> | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"GithubAuth"> | Date | string
+  }
+
+  export type GithubInstallationReposWhereInput = {
+    AND?: GithubInstallationReposWhereInput | GithubInstallationReposWhereInput[]
+    OR?: GithubInstallationReposWhereInput[]
+    NOT?: GithubInstallationReposWhereInput | GithubInstallationReposWhereInput[]
+    installation_id?: StringFilter<"GithubInstallationRepos"> | string
+    repo_id?: BigIntFilter<"GithubInstallationRepos"> | bigint | number
+    full_name?: StringFilter<"GithubInstallationRepos"> | string
+    name?: StringFilter<"GithubInstallationRepos"> | string
+    owner_username?: StringFilter<"GithubInstallationRepos"> | string
+    owner_type?: EnumInstallationRepoOwnerTypeFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoOwnerType
+    visibility?: EnumInstallationRepoVisibilityNullableFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFilter<"GithubInstallationRepos"> | boolean
+    disabled?: BoolFilter<"GithubInstallationRepos"> | boolean
+    default_branch?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    html_url?: StringFilter<"GithubInstallationRepos"> | string
+    language?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    fetched_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"GithubInstallationRepos"> | Date | string | null
+    created_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    updated_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    githubAuth?: XOR<GithubAuthScalarRelationFilter, GithubAuthWhereInput>
+  }
+
+  export type GithubInstallationReposOrderByWithRelationInput = {
+    installation_id?: SortOrder
+    repo_id?: SortOrder
+    full_name?: SortOrder
+    name?: SortOrder
+    owner_username?: SortOrder
+    owner_type?: SortOrder
+    visibility?: SortOrderInput | SortOrder
+    archived?: SortOrder
+    disabled?: SortOrder
+    default_branch?: SortOrderInput | SortOrder
+    html_url?: SortOrder
+    language?: SortOrderInput | SortOrder
+    fetched_at?: SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    githubAuth?: GithubAuthOrderByWithRelationInput
+  }
+
+  export type GithubInstallationReposWhereUniqueInput = Prisma.AtLeast<{
+    installation_id_repo_id?: GithubInstallationReposInstallation_idRepo_idCompoundUniqueInput
+    AND?: GithubInstallationReposWhereInput | GithubInstallationReposWhereInput[]
+    OR?: GithubInstallationReposWhereInput[]
+    NOT?: GithubInstallationReposWhereInput | GithubInstallationReposWhereInput[]
+    installation_id?: StringFilter<"GithubInstallationRepos"> | string
+    repo_id?: BigIntFilter<"GithubInstallationRepos"> | bigint | number
+    full_name?: StringFilter<"GithubInstallationRepos"> | string
+    name?: StringFilter<"GithubInstallationRepos"> | string
+    owner_username?: StringFilter<"GithubInstallationRepos"> | string
+    owner_type?: EnumInstallationRepoOwnerTypeFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoOwnerType
+    visibility?: EnumInstallationRepoVisibilityNullableFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFilter<"GithubInstallationRepos"> | boolean
+    disabled?: BoolFilter<"GithubInstallationRepos"> | boolean
+    default_branch?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    html_url?: StringFilter<"GithubInstallationRepos"> | string
+    language?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    fetched_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"GithubInstallationRepos"> | Date | string | null
+    created_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    updated_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    githubAuth?: XOR<GithubAuthScalarRelationFilter, GithubAuthWhereInput>
+  }, "installation_id_repo_id">
+
+  export type GithubInstallationReposOrderByWithAggregationInput = {
+    installation_id?: SortOrder
+    repo_id?: SortOrder
+    full_name?: SortOrder
+    name?: SortOrder
+    owner_username?: SortOrder
+    owner_type?: SortOrder
+    visibility?: SortOrderInput | SortOrder
+    archived?: SortOrder
+    disabled?: SortOrder
+    default_branch?: SortOrderInput | SortOrder
+    html_url?: SortOrder
+    language?: SortOrderInput | SortOrder
+    fetched_at?: SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: GithubInstallationReposCountOrderByAggregateInput
+    _avg?: GithubInstallationReposAvgOrderByAggregateInput
+    _max?: GithubInstallationReposMaxOrderByAggregateInput
+    _min?: GithubInstallationReposMinOrderByAggregateInput
+    _sum?: GithubInstallationReposSumOrderByAggregateInput
+  }
+
+  export type GithubInstallationReposScalarWhereWithAggregatesInput = {
+    AND?: GithubInstallationReposScalarWhereWithAggregatesInput | GithubInstallationReposScalarWhereWithAggregatesInput[]
+    OR?: GithubInstallationReposScalarWhereWithAggregatesInput[]
+    NOT?: GithubInstallationReposScalarWhereWithAggregatesInput | GithubInstallationReposScalarWhereWithAggregatesInput[]
+    installation_id?: StringWithAggregatesFilter<"GithubInstallationRepos"> | string
+    repo_id?: BigIntWithAggregatesFilter<"GithubInstallationRepos"> | bigint | number
+    full_name?: StringWithAggregatesFilter<"GithubInstallationRepos"> | string
+    name?: StringWithAggregatesFilter<"GithubInstallationRepos"> | string
+    owner_username?: StringWithAggregatesFilter<"GithubInstallationRepos"> | string
+    owner_type?: EnumInstallationRepoOwnerTypeWithAggregatesFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoOwnerType
+    visibility?: EnumInstallationRepoVisibilityNullableWithAggregatesFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoVisibility | null
+    archived?: BoolWithAggregatesFilter<"GithubInstallationRepos"> | boolean
+    disabled?: BoolWithAggregatesFilter<"GithubInstallationRepos"> | boolean
+    default_branch?: StringNullableWithAggregatesFilter<"GithubInstallationRepos"> | string | null
+    html_url?: StringWithAggregatesFilter<"GithubInstallationRepos"> | string
+    language?: StringNullableWithAggregatesFilter<"GithubInstallationRepos"> | string | null
+    fetched_at?: DateTimeWithAggregatesFilter<"GithubInstallationRepos"> | Date | string
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"GithubInstallationRepos"> | Date | string | null
+    created_at?: DateTimeWithAggregatesFilter<"GithubInstallationRepos"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"GithubInstallationRepos"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -3798,6 +5396,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     user: UserCreateNestedOneWithoutGithubAuthInput
+    repos?: GithubInstallationReposCreateNestedManyWithoutGithubAuthInput
   }
 
   export type GithubAuthUncheckedCreateInput = {
@@ -3818,6 +5417,7 @@ export namespace Prisma {
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
+    repos?: GithubInstallationReposUncheckedCreateNestedManyWithoutGithubAuthInput
   }
 
   export type GithubAuthUpdateInput = {
@@ -3837,6 +5437,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutGithubAuthNestedInput
+    repos?: GithubInstallationReposUpdateManyWithoutGithubAuthNestedInput
   }
 
   export type GithubAuthUncheckedUpdateInput = {
@@ -3857,6 +5458,7 @@ export namespace Prisma {
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    repos?: GithubInstallationReposUncheckedUpdateManyWithoutGithubAuthNestedInput
   }
 
   export type GithubAuthCreateManyInput = {
@@ -3913,6 +5515,138 @@ export namespace Prisma {
     installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
     permissions?: JsonNullValueInput | InputJsonValue
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposCreateInput = {
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    githubAuth: GithubAuthCreateNestedOneWithoutReposInput
+  }
+
+  export type GithubInstallationReposUncheckedCreateInput = {
+    installation_id: string
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubInstallationReposUpdateInput = {
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    githubAuth?: GithubAuthUpdateOneRequiredWithoutReposNestedInput
+  }
+
+  export type GithubInstallationReposUncheckedUpdateInput = {
+    installation_id?: StringFieldUpdateOperationsInput | string
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposCreateManyInput = {
+    installation_id: string
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubInstallationReposUpdateManyMutationInput = {
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposUncheckedUpdateManyInput = {
+    installation_id?: StringFieldUpdateOperationsInput | string
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4129,6 +5863,16 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type GithubInstallationReposListRelationFilter = {
+    every?: GithubInstallationReposWhereInput
+    some?: GithubInstallationReposWhereInput
+    none?: GithubInstallationReposWhereInput
+  }
+
+  export type GithubInstallationReposOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type GithubAuthCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
@@ -4251,6 +5995,180 @@ export namespace Prisma {
     _max?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
   }
 
+  export type BigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type EnumInstallationRepoOwnerTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoOwnerType | EnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel> | $Enums.InstallationRepoOwnerType
+  }
+
+  export type EnumInstallationRepoVisibilityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoVisibility | EnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel> | $Enums.InstallationRepoVisibility | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type GithubAuthScalarRelationFilter = {
+    is?: GithubAuthWhereInput
+    isNot?: GithubAuthWhereInput
+  }
+
+  export type GithubInstallationReposInstallation_idRepo_idCompoundUniqueInput = {
+    installation_id: string
+    repo_id: bigint | number
+  }
+
+  export type GithubInstallationReposCountOrderByAggregateInput = {
+    installation_id?: SortOrder
+    repo_id?: SortOrder
+    full_name?: SortOrder
+    name?: SortOrder
+    owner_username?: SortOrder
+    owner_type?: SortOrder
+    visibility?: SortOrder
+    archived?: SortOrder
+    disabled?: SortOrder
+    default_branch?: SortOrder
+    html_url?: SortOrder
+    language?: SortOrder
+    fetched_at?: SortOrder
+    deleted_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type GithubInstallationReposAvgOrderByAggregateInput = {
+    repo_id?: SortOrder
+  }
+
+  export type GithubInstallationReposMaxOrderByAggregateInput = {
+    installation_id?: SortOrder
+    repo_id?: SortOrder
+    full_name?: SortOrder
+    name?: SortOrder
+    owner_username?: SortOrder
+    owner_type?: SortOrder
+    visibility?: SortOrder
+    archived?: SortOrder
+    disabled?: SortOrder
+    default_branch?: SortOrder
+    html_url?: SortOrder
+    language?: SortOrder
+    fetched_at?: SortOrder
+    deleted_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type GithubInstallationReposMinOrderByAggregateInput = {
+    installation_id?: SortOrder
+    repo_id?: SortOrder
+    full_name?: SortOrder
+    name?: SortOrder
+    owner_username?: SortOrder
+    owner_type?: SortOrder
+    visibility?: SortOrder
+    archived?: SortOrder
+    disabled?: SortOrder
+    default_branch?: SortOrder
+    html_url?: SortOrder
+    language?: SortOrder
+    fetched_at?: SortOrder
+    deleted_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type GithubInstallationReposSumOrderByAggregateInput = {
+    repo_id?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
+  export type EnumInstallationRepoOwnerTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoOwnerType | EnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumInstallationRepoOwnerTypeWithAggregatesFilter<$PrismaModel> | $Enums.InstallationRepoOwnerType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel>
+    _max?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel>
+  }
+
+  export type EnumInstallationRepoVisibilityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoVisibility | EnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumInstallationRepoVisibilityNullableWithAggregatesFilter<$PrismaModel> | $Enums.InstallationRepoVisibility | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel>
+    _max?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type GithubAuthCreateNestedOneWithoutUserInput = {
     create?: XOR<GithubAuthCreateWithoutUserInput, GithubAuthUncheckedCreateWithoutUserInput>
     connectOrCreate?: GithubAuthCreateOrConnectWithoutUserInput
@@ -4309,6 +6227,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type GithubInstallationReposCreateNestedManyWithoutGithubAuthInput = {
+    create?: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput> | GithubInstallationReposCreateWithoutGithubAuthInput[] | GithubInstallationReposUncheckedCreateWithoutGithubAuthInput[]
+    connectOrCreate?: GithubInstallationReposCreateOrConnectWithoutGithubAuthInput | GithubInstallationReposCreateOrConnectWithoutGithubAuthInput[]
+    createMany?: GithubInstallationReposCreateManyGithubAuthInputEnvelope
+    connect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+  }
+
+  export type GithubInstallationReposUncheckedCreateNestedManyWithoutGithubAuthInput = {
+    create?: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput> | GithubInstallationReposCreateWithoutGithubAuthInput[] | GithubInstallationReposUncheckedCreateWithoutGithubAuthInput[]
+    connectOrCreate?: GithubInstallationReposCreateOrConnectWithoutGithubAuthInput | GithubInstallationReposCreateOrConnectWithoutGithubAuthInput[]
+    createMany?: GithubInstallationReposCreateManyGithubAuthInputEnvelope
+    connect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -4327,6 +6259,72 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutGithubAuthInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGithubAuthInput, UserUpdateWithoutGithubAuthInput>, UserUncheckedUpdateWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposUpdateManyWithoutGithubAuthNestedInput = {
+    create?: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput> | GithubInstallationReposCreateWithoutGithubAuthInput[] | GithubInstallationReposUncheckedCreateWithoutGithubAuthInput[]
+    connectOrCreate?: GithubInstallationReposCreateOrConnectWithoutGithubAuthInput | GithubInstallationReposCreateOrConnectWithoutGithubAuthInput[]
+    upsert?: GithubInstallationReposUpsertWithWhereUniqueWithoutGithubAuthInput | GithubInstallationReposUpsertWithWhereUniqueWithoutGithubAuthInput[]
+    createMany?: GithubInstallationReposCreateManyGithubAuthInputEnvelope
+    set?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    disconnect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    delete?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    connect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    update?: GithubInstallationReposUpdateWithWhereUniqueWithoutGithubAuthInput | GithubInstallationReposUpdateWithWhereUniqueWithoutGithubAuthInput[]
+    updateMany?: GithubInstallationReposUpdateManyWithWhereWithoutGithubAuthInput | GithubInstallationReposUpdateManyWithWhereWithoutGithubAuthInput[]
+    deleteMany?: GithubInstallationReposScalarWhereInput | GithubInstallationReposScalarWhereInput[]
+  }
+
+  export type GithubInstallationReposUncheckedUpdateManyWithoutGithubAuthNestedInput = {
+    create?: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput> | GithubInstallationReposCreateWithoutGithubAuthInput[] | GithubInstallationReposUncheckedCreateWithoutGithubAuthInput[]
+    connectOrCreate?: GithubInstallationReposCreateOrConnectWithoutGithubAuthInput | GithubInstallationReposCreateOrConnectWithoutGithubAuthInput[]
+    upsert?: GithubInstallationReposUpsertWithWhereUniqueWithoutGithubAuthInput | GithubInstallationReposUpsertWithWhereUniqueWithoutGithubAuthInput[]
+    createMany?: GithubInstallationReposCreateManyGithubAuthInputEnvelope
+    set?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    disconnect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    delete?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    connect?: GithubInstallationReposWhereUniqueInput | GithubInstallationReposWhereUniqueInput[]
+    update?: GithubInstallationReposUpdateWithWhereUniqueWithoutGithubAuthInput | GithubInstallationReposUpdateWithWhereUniqueWithoutGithubAuthInput[]
+    updateMany?: GithubInstallationReposUpdateManyWithWhereWithoutGithubAuthInput | GithubInstallationReposUpdateManyWithWhereWithoutGithubAuthInput[]
+    deleteMany?: GithubInstallationReposScalarWhereInput | GithubInstallationReposScalarWhereInput[]
+  }
+
+  export type GithubAuthCreateNestedOneWithoutReposInput = {
+    create?: XOR<GithubAuthCreateWithoutReposInput, GithubAuthUncheckedCreateWithoutReposInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutReposInput
+    connect?: GithubAuthWhereUniqueInput
+  }
+
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput = {
+    set?: $Enums.InstallationRepoOwnerType
+  }
+
+  export type NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput = {
+    set?: $Enums.InstallationRepoVisibility | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type GithubAuthUpdateOneRequiredWithoutReposNestedInput = {
+    create?: XOR<GithubAuthCreateWithoutReposInput, GithubAuthUncheckedCreateWithoutReposInput>
+    connectOrCreate?: GithubAuthCreateOrConnectWithoutReposInput
+    upsert?: GithubAuthUpsertWithoutReposInput
+    connect?: GithubAuthWhereUniqueInput
+    update?: XOR<XOR<GithubAuthUpdateToOneWithWhereWithoutReposInput, GithubAuthUpdateWithoutReposInput>, GithubAuthUncheckedUpdateWithoutReposInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4532,6 +6530,105 @@ export namespace Prisma {
     _max?: NestedEnumGithubAuthRepoSelectionFilter<$PrismaModel>
   }
 
+  export type NestedBigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoOwnerType | EnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel> | $Enums.InstallationRepoOwnerType
+  }
+
+  export type NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoVisibility | EnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel> | $Enums.InstallationRepoVisibility | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
+  export type NestedEnumInstallationRepoOwnerTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoOwnerType | EnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.InstallationRepoOwnerType[] | ListEnumInstallationRepoOwnerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumInstallationRepoOwnerTypeWithAggregatesFilter<$PrismaModel> | $Enums.InstallationRepoOwnerType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel>
+    _max?: NestedEnumInstallationRepoOwnerTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumInstallationRepoVisibilityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InstallationRepoVisibility | EnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.InstallationRepoVisibility[] | ListEnumInstallationRepoVisibilityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumInstallationRepoVisibilityNullableWithAggregatesFilter<$PrismaModel> | $Enums.InstallationRepoVisibility | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel>
+    _max?: NestedEnumInstallationRepoVisibilityNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type GithubAuthCreateWithoutUserInput = {
     github_user_id?: number | null
     github_username?: string | null
@@ -4548,6 +6645,7 @@ export namespace Prisma {
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
+    repos?: GithubInstallationReposCreateNestedManyWithoutGithubAuthInput
   }
 
   export type GithubAuthUncheckedCreateWithoutUserInput = {
@@ -4567,6 +6665,7 @@ export namespace Prisma {
     repository_selection: $Enums.GithubAuthRepoSelection
     created_at?: Date | string
     updated_at?: Date | string
+    repos?: GithubInstallationReposUncheckedCreateNestedManyWithoutGithubAuthInput
   }
 
   export type GithubAuthCreateOrConnectWithoutUserInput = {
@@ -4601,6 +6700,7 @@ export namespace Prisma {
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    repos?: GithubInstallationReposUpdateManyWithoutGithubAuthNestedInput
   }
 
   export type GithubAuthUncheckedUpdateWithoutUserInput = {
@@ -4620,6 +6720,7 @@ export namespace Prisma {
     repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    repos?: GithubInstallationReposUncheckedUpdateManyWithoutGithubAuthNestedInput
   }
 
   export type UserCreateWithoutGithubAuthInput = {
@@ -4644,6 +6745,52 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutGithubAuthInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutGithubAuthInput, UserUncheckedCreateWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposCreateWithoutGithubAuthInput = {
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubInstallationReposUncheckedCreateWithoutGithubAuthInput = {
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubInstallationReposCreateOrConnectWithoutGithubAuthInput = {
+    where: GithubInstallationReposWhereUniqueInput
+    create: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposCreateManyGithubAuthInputEnvelope = {
+    data: GithubInstallationReposCreateManyGithubAuthInput | GithubInstallationReposCreateManyGithubAuthInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutGithubAuthInput = {
@@ -4672,6 +6819,210 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposUpsertWithWhereUniqueWithoutGithubAuthInput = {
+    where: GithubInstallationReposWhereUniqueInput
+    update: XOR<GithubInstallationReposUpdateWithoutGithubAuthInput, GithubInstallationReposUncheckedUpdateWithoutGithubAuthInput>
+    create: XOR<GithubInstallationReposCreateWithoutGithubAuthInput, GithubInstallationReposUncheckedCreateWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposUpdateWithWhereUniqueWithoutGithubAuthInput = {
+    where: GithubInstallationReposWhereUniqueInput
+    data: XOR<GithubInstallationReposUpdateWithoutGithubAuthInput, GithubInstallationReposUncheckedUpdateWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposUpdateManyWithWhereWithoutGithubAuthInput = {
+    where: GithubInstallationReposScalarWhereInput
+    data: XOR<GithubInstallationReposUpdateManyMutationInput, GithubInstallationReposUncheckedUpdateManyWithoutGithubAuthInput>
+  }
+
+  export type GithubInstallationReposScalarWhereInput = {
+    AND?: GithubInstallationReposScalarWhereInput | GithubInstallationReposScalarWhereInput[]
+    OR?: GithubInstallationReposScalarWhereInput[]
+    NOT?: GithubInstallationReposScalarWhereInput | GithubInstallationReposScalarWhereInput[]
+    installation_id?: StringFilter<"GithubInstallationRepos"> | string
+    repo_id?: BigIntFilter<"GithubInstallationRepos"> | bigint | number
+    full_name?: StringFilter<"GithubInstallationRepos"> | string
+    name?: StringFilter<"GithubInstallationRepos"> | string
+    owner_username?: StringFilter<"GithubInstallationRepos"> | string
+    owner_type?: EnumInstallationRepoOwnerTypeFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoOwnerType
+    visibility?: EnumInstallationRepoVisibilityNullableFilter<"GithubInstallationRepos"> | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFilter<"GithubInstallationRepos"> | boolean
+    disabled?: BoolFilter<"GithubInstallationRepos"> | boolean
+    default_branch?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    html_url?: StringFilter<"GithubInstallationRepos"> | string
+    language?: StringNullableFilter<"GithubInstallationRepos"> | string | null
+    fetched_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"GithubInstallationRepos"> | Date | string | null
+    created_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+    updated_at?: DateTimeFilter<"GithubInstallationRepos"> | Date | string
+  }
+
+  export type GithubAuthCreateWithoutReposInput = {
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
+    access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: UserCreateNestedOneWithoutGithubAuthInput
+  }
+
+  export type GithubAuthUncheckedCreateWithoutReposInput = {
+    id?: number
+    user_id: number
+    github_user_id?: number | null
+    github_username?: string | null
+    github_avatar_url?: string | null
+    access_token: string
+    refresh_token: string
+    token_type: string
+    expires_at: Date | string
+    refresh_expires_at: Date | string
+    scope: string
+    installation_id: string
+    installation_token_expires_at: Date | string
+    permissions: JsonNullValueInput | InputJsonValue
+    repository_selection: $Enums.GithubAuthRepoSelection
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubAuthCreateOrConnectWithoutReposInput = {
+    where: GithubAuthWhereUniqueInput
+    create: XOR<GithubAuthCreateWithoutReposInput, GithubAuthUncheckedCreateWithoutReposInput>
+  }
+
+  export type GithubAuthUpsertWithoutReposInput = {
+    update: XOR<GithubAuthUpdateWithoutReposInput, GithubAuthUncheckedUpdateWithoutReposInput>
+    create: XOR<GithubAuthCreateWithoutReposInput, GithubAuthUncheckedCreateWithoutReposInput>
+    where?: GithubAuthWhereInput
+  }
+
+  export type GithubAuthUpdateToOneWithWhereWithoutReposInput = {
+    where?: GithubAuthWhereInput
+    data: XOR<GithubAuthUpdateWithoutReposInput, GithubAuthUncheckedUpdateWithoutReposInput>
+  }
+
+  export type GithubAuthUpdateWithoutReposInput = {
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutGithubAuthNestedInput
+  }
+
+  export type GithubAuthUncheckedUpdateWithoutReposInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    github_user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    github_username?: NullableStringFieldUpdateOperationsInput | string | null
+    github_avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: StringFieldUpdateOperationsInput | string
+    refresh_token?: StringFieldUpdateOperationsInput | string
+    token_type?: StringFieldUpdateOperationsInput | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    refresh_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    scope?: StringFieldUpdateOperationsInput | string
+    installation_id?: StringFieldUpdateOperationsInput | string
+    installation_token_expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    permissions?: JsonNullValueInput | InputJsonValue
+    repository_selection?: EnumGithubAuthRepoSelectionFieldUpdateOperationsInput | $Enums.GithubAuthRepoSelection
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposCreateManyGithubAuthInput = {
+    repo_id: bigint | number
+    full_name: string
+    name: string
+    owner_username: string
+    owner_type: $Enums.InstallationRepoOwnerType
+    visibility?: $Enums.InstallationRepoVisibility | null
+    archived?: boolean
+    disabled?: boolean
+    default_branch?: string | null
+    html_url: string
+    language?: string | null
+    fetched_at?: Date | string
+    deleted_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type GithubInstallationReposUpdateWithoutGithubAuthInput = {
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposUncheckedUpdateWithoutGithubAuthInput = {
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GithubInstallationReposUncheckedUpdateManyWithoutGithubAuthInput = {
+    repo_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    full_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    owner_username?: StringFieldUpdateOperationsInput | string
+    owner_type?: EnumInstallationRepoOwnerTypeFieldUpdateOperationsInput | $Enums.InstallationRepoOwnerType
+    visibility?: NullableEnumInstallationRepoVisibilityFieldUpdateOperationsInput | $Enums.InstallationRepoVisibility | null
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    default_branch?: NullableStringFieldUpdateOperationsInput | string | null
+    html_url?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    fetched_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
